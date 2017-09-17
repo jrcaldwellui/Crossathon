@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FindAnswer {
+
+    /*
+    * Generates synonyms for the clue and the answers
+    */
     public static ArrayList<String> getAnswer(ArrayList<String> returnArray,HashMap<Integer,Clue> clues,
                                               HashMap<Integer,Word> syns, String clue)
     {
@@ -34,6 +38,9 @@ public class FindAnswer {
         }
        return returnArray;
     }
+    /*
+    * Narrows down answer based on which characters are known/unknown
+    */
     public static ArrayList<String> narrowAnswerKnown(ArrayList<String> answers,String known)
     {
         ArrayList<String> narrowedDown;
@@ -51,6 +58,9 @@ public class FindAnswer {
         }
         return narrowedDown;
     }
+    /*
+    * narrows down answer based on length of the desired answer
+    */
     public static ArrayList<String> narrowAnswerLen(ArrayList<String> answers,int desiredLength)
     {
         ArrayList<String> narrowedDown;

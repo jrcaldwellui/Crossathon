@@ -14,6 +14,10 @@ public class Word {
     public ArrayList<String> getSynonyms() {
         return synonyms;
     }
+
+    /*
+    * unscrambles the word/ anagram of word
+    */
     public static ArrayList<String> anagram(String input, HashMap<Integer,ArrayList<String>> variations)
     {
         char[] temp=input.toCharArray();
