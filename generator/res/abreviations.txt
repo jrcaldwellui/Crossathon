@@ -1,0 +1,569 @@
+(About) [c]
+(About) [ca]
+(About) [circa]
+(About) [re]
+(Academic) [dd]
+(Academic) [doctor]
+(Academic) [divinity]
+(Academic) [prof]
+(Acceleration) [g]
+(Account) [ac]
+(Accountant) [ca]
+(Ace) [a]
+(Advert) [ad]
+(Afternoon) [pm]
+(Against) [v]
+(Against) [vs]
+(Against) [versus]
+(Agent) [rep]
+(Agent) [representative]
+(Agricultural) [ag]
+(Air conditioning) [ac]
+(Airman) [aircraftman]
+(Alien) [et]
+(Alien) [extraterrestrial]
+(Also known as) [aka]
+(Aluminium) [al]
+(Ambassador) [he]
+(America) [am]
+(America) [us]
+(America) [usa]
+(American ship) [uss]
+(Amnesty) [ai]
+(Amnesty International) [ai]
+(Anglican) [ce]
+(Church of England) [ce]
+(And French) [et]
+(Answer) [ay]
+(Answer) [e]
+(Area) [a]
+(Arbiter) [ref]
+(referee) [ref]
+(Arbiter) [referee]
+(Army cop) [mp]
+(Army cop) [Military Policeman]
+(Military Policeman) [mp]
+(Army corps) [reme]
+(Royal Electrical and Mechanical Engineers (British army)) [reme]
+(Royal Electrical and Mechanical Engineers (British army)) [Army corps]
+(Arsenic) [as]
+(Artificial intelligence) [ai]
+(Artillery) [ra]
+(Royal Artillery) [ra]
+(Artists) [ra]
+(Royal Academy) [ra]
+(Attorney) [da]
+(Attorney) [District Attorney]
+(Practicing Attorney) [pa]
+(District Attorney) [da]
+(Australia) [aus]
+(Australia) [oz]
+(slang name for Australia) [oz]
+(Avenue) [ave]
+(Bachelor of Arts) [ba]
+(Bachelor of Medicine) [bm]
+(Basque nationalists) [eta]
+(Bearing) [n]
+(Bearing) [e]
+(Bearing) [s]
+(Bearing) [w]
+(Bearing) [ne]
+(Bearing) [nw]
+(Bearing) [se]
+(Bearing) [sw]
+(compass points) [n]
+(compass points) [e]
+(compass points) [s]
+(compass points) [w]
+(compass points) [ne]
+(compass points) [nw]
+(compass points) [se]
+(compass points) [sw]
+(Beginner) [l]
+(Beginner) [for learner]
+(Bend) [s]
+(Bend) [u]
+(U-bend) [u]
+(S-bend) [S]
+(Bible) [av]
+(King James bible Authorized version) [av]
+(Bill) [ac]
+(Bill) [account]
+(Bill) [iou]
+(account) [ac]
+(Bird) [tit]
+(Bishop) [b]
+(Right Reverend) [rr]
+(Doctor of Divinity) [dd]
+(Bob) [s]
+(shilling) [s]
+(Bob) [shilling]
+(Bone) [os]
+(New Testament) [nt]
+(Old Testament) [ot]
+(Manuscript) [ms]
+(Genesis) [gen]
+(Boy) [b]
+(Bridge player) [n]
+(Bridge player) [e]
+(Bridge player) [s]
+(Bridge player) [w]
+(Byte) [b]
+(Calcium) [ca]
+(California) [ca]
+(Model T) [t]
+(Rolls-Royce) [rr]
+(Care of) [co]
+(Caught) [c]
+(Caught) [ct]
+(Celsius) [c]
+(Cent) [c]
+(Centigrade) [c]
+(Century) [c]
+(Certificate) [x]
+(Certificate) [u]
+(Certificate) [pg]
+(Certificate) [r]
+(Certificate) [g]
+(Charged) [ion]
+(Chartered accountant) [ca]
+(Chief) [ch]
+(Chlorine) [cl]
+(Chromosome) [x]
+(Chromosome) [y]
+(Church) [ch]
+(Church of England) [ce]
+(Roman Catholic) [rc]
+(Circa) [c]
+(Circle) [o]
+(New York) [ny]
+(Los Angeles) [la]
+(postcode for City of London) [ec]
+(Club) [y]
+(YMCA) [y]
+(YMCA) [club]
+(penny) [p]
+(from the Latin denarius) [d]
+(cent) [c]
+(Colonel) [col]
+(Colt) [c]
+(Commercial) [ad]
+(Communist) [red]
+(Companion) [CH]
+(Order of the Companions of Honour) [CH]
+(Company) [co]
+(Compare) [cf]
+(abbreviation of the Latin confer) [cf]
+(Computer) [pc]
+(Concerning) [re]
+(Conservationists) [nt]
+(National Trust) [nt]
+(Conservative) [c]
+(Conservative) [con]
+(police constable) [pc]
+(Constant) [e]
+(mathematical constants) [pi]
+(Constant) [pi]
+(mathematical constants) [e]
+(Copper) [p]
+(Copper) [cu]
+(Corner) [SE]
+(Corner) [NE]
+(Corner) [SW]
+(Any two direction) [NW]
+(Any two direction) [SE]
+(Any two direction) [NE]
+(Any two direction) [SW]
+(Any two direction) [NW]
+(Councillor) [cl]
+(Councillor) [clr]
+(Councillor) [cllr]
+(Court) [ct]
+(Credit) [cr]
+(Criminal) [con]
+(Cross) [x]
+(Current) [ac]
+(Current) [dc]
+(alternating current) [ad]
+(direct current) [dc]
+(Anno Domini) [ad]
+(Current) [amp]
+(Current account) [ca]
+(Cystic fibrosis) [cf]
+(Date) [d]
+(Daughter) [d]
+(Dead or Died) [d]
+(deceased) [dec]
+(Dead or Died) [ex]
+(abbreviation) [ob]
+(Debts) [ious]
+(debts) [IOU]
+(Deceased) [d]
+(Deceased) [ex]
+(Decoration) - vc (Victoria Cross), gc (George Cross)
+Degree - deg, c (Celsius or Centigrade), f (Fahrenheit), ba (Bachelor of Arts), ma (Master of Arts).
+Detectives - cid
+Detective inspector - di
+Deutschmark - dm
+Dinner jacket- dj
+Direction - n, e, s, w (and other compass bearings)
+Disc - o (the letter O is round, like a disc), ep (extended play record), lp (long play record), cd (compact disc)
+Disease - tb, me
+Doctor of Divinity - dd
+Doctor - doc, bm (Bachelor of Medicine), mb (Medicinae Baccalaureus), md (Medicinae Doctor), mo (medical officer), gp (General Practitioner), dr
+Drama - noh (Japanese drama Noh)
+Drama Company - rep
+Drip - iv (intravenous drip)
+Drug - c (cocaine), e, x (both short for ecstasy) or h (heroin)
+Dry - tt (teetotal) or aa (Alcoholics Anonymous)
+Duck - o (from the cricket score of 0)
+Ducks - oo
+Each - ea
+East - e
+East Germany - gdr (German Democratic Republic)
+Ecstasy - e or x (slang names for the drug)
+Editor - ed
+Egg - o (the letter O loosely resembles the shape of an egg)
+Electricity - ac (alternating current), dc (direct current)
+Eleven - ll (II looks similar to 11), or xi (Roman numerals)
+Energy - e, j (joule)
+Engineer - ce (civil engineer) or re (Royal Engineer) or me (mechanical engineer)
+English - e
+Escape - esc
+Established - est
+Estimated time of arrival - eta
+Europe - eu (European Union), ec (European Community)
+Exercise - pe (physical education), pt (physical training), train
+Extra - w (from the extra runs in cricket for a wide ball)
+Extra large - xl
+Extra terrestrial - et
+Fahrenheit - f
+Father - da, dad, fr, pa
+Female - f
+Fighter plane - mig (type of plane)
+Firm - co (company)
+Fifty - l (Roman numeral (lower case L))
+Five - v (Roman numeral)
+Fleet - rn (Royal Navy)
+Flying bomb - vi (looks like V1)
+Following - f
+Football association - fa
+Football club - fc
+For example - e.g. (short for the Latin exempli gratia)
+Former - ex
+Four - iv (Roman Numeral)
+France - f
+Frenchman - m (Monsieur)
+Game - ru (Rugby Union)
+Gas - h (hydrogen), o (oxygen), n (nitrogen), cs (tear gas)
+German submarine - u (U-boat)
+Germany - ger, d (Deutschland)
+Glasses - oo
+Gold - au (chemical symbol), or (in heraldry)
+Good - pi (pious)
+Good Man - st (abbreviation for Saint)
+Graduate - ba, ma (university degrees)
+Gram - g
+Grand prix - gp
+Grand - g, m (Roman numeral for 1000), k (kilo-)
+Group - gp
+Gunners/Gunmen - ra (Royal Artillery)
+Gym - pe (Physical Education) or pt (Physical Training)
+Hand - n, e, s, w (Bridge hands)
+Hear - t (Position on hearing aid)
+Hectare - ha
+Helium - he
+Heroin - h
+Hesitation - er
+Hire purchase - hp
+Holy man - st (saint)
+Home counties - se (South-east of England)
+Honours - ba or ma (see Degree)
+Horse - g, gg (slang)
+Hospital - h
+Hospital Department - ae (Accident & Emergency), ent (Ear, Nose & Throat)
+Hour - h
+Houses of Parliament - hp
+Hundred - c (Roman numeral), ton
+Husband - h
+Hydrogen - h
+Iceland - is (country code)
+Inch - in
+Independent - i or ind.
+Information technology - it
+Inspector - di (Detective inspector)
+Internet/internet provider - isp (internet service provider)
+Initials - inits.
+Intelligence - iq
+Image - pic
+Iodine - i (chemical symbol)
+Ireland - ire
+Irish Republican Army - ira
+Iron - fe (chemical symbol)
+Island - is
+Jack - j, tar, ab (sailor)
+Jet - mig (type of plane)
+Jolly - rm (Royal Marine)
+Journalist - ed (editor)
+Judge - j, ref
+Junction - t (T-junction)
+Junior - jr
+Clues beginning with K[edit]
+Kelvin - k
+Kentucky - ky
+Key - a, b, c, d, e, f or g (musical keys)
+Kick off - ko
+Kilo - k
+King - k, r (from the Latin rex), hm (His Majesty), or hrh (His Royal Highness), or gr (King George (rex), or cr (King Charles))
+Kiss - x (the symbol for a kiss)
+Knave - j (Jack)
+Knight - k, kt, kbe (Knight Commander of the Order of the British Empire) or kg (Knight of the Garter) or n(the symbol for a knight on a chessboard)
+Knock out - ko
+Knot - kt
+Labour - lab
+Lake - l or la
+Large number - c, d, m (Roman numerals) or k (kilo-)
+Last - z (the last letter of the alphabet)
+Last month - ult (ultimo)
+Lawrence - dh (D. H. Lawrence) or te (T. E. Lawrence)
+Lawyer - da
+Lead - pb (chemical symbol)
+Learner - l
+Left - l
+Liberal - l or lib
+Lieutenant - lt
+Lines - ry (railway) br (British Rail)
+Litre - l
+Local area network - lan
+Long playing record - lp
+Long wave - lw
+Look - lo
+Loud - f (forte), or ff (fortissimo)
+Los Angeles - la
+Love - o (zero score in tennis)
+Maiden - m (cricket terminology for no runs in an over)
+Male - m, he or pa
+Madame (As in French) - mme
+Manager - mic (man in charge)
+Many - CL, XD... (A collection of at least 2 Roman numerals)
+Map-makers - os (Ordnance Survey)
+Marines - rm (Royal Marines)
+Married - m
+Master of ceremonies - mc
+Medal - vc (Victoria Cross), gc (George Cross), obe (Order of the British Empire), om (Order of Merit)
+Medic - doc (short for doctor), bm (Bachelor of Medicine), mb (Medicinae Baccalaureus), md (Medicinae Doctor), mo (medical officer), gp (General Practitioner), dr (short for doctor)
+Master of Arts - ma
+Master's - ma (Master of Arts degree)
+Megabyte - mb
+Member - mp (same as Member of Parliament (below)), arm, leg, words for male genitals
+Member of Parliament - mp
+Messerschmitt - me
+Middle East - me
+Midfielder - l (the 'mid' letter of 'fielder')
+Military Police - mp
+Ministry of Defence - mod
+Minute - m
+Model - t (Model T Ford)
+Monarch - er (Elizabeth Regina), gr (George Rex), q (queen), k (king) or r (rex/regina)
+Monsieur - m
+Morning or Half Day - am
+Mother - ma
+Motor racing - fi (as in f1, formula one)
+Motorway - m or mi (looks like M1)
+Namely - sc (from the Latin scilicet), alternative to ie
+National Trust - nt
+Navy - rn (Royal Navy), abs (able-bodied seamen) or tars (slang for seamen)
+Nazis - ss (Schutzstaffel)
+Neon - ne (chemical symbol)
+Never-never - hp (synonym for hire purchase)
+New - n
+New Testament - nt
+Newspaper - rag
+Nitrogen - n
+No ball - nb (cricket terminology)
+North - n
+Not applicable - na
+Note - nb (from the Latin nota bene) or a, b, c, d, e, f, g (musical notes) or Do, Re, Mi, Fa, Sol, La, Te/Ti (musical notes). However La is commonly referred.
+Nothing - o (the letter O looks like the number 0)
+Now - ad (from the Latin Anno Domini)
+Number - v, x, c, d, m, l (Roman numerals)
+Nurse - en (enrolled nurse) or rn (registered nurse)
+Odds - sp (starting price)
+Officer - oc (Officer Corps) or co (Commanding Officer)
+Old - o
+Old person - oap
+Old man - pa
+Old Testament - ot
+One - i (I is the Roman numeral for 1) or rarely a, an (not normally used in British crosswords), ace (playing card)
+Operating system - os
+Operation - op
+Order - om (Order of Merit)
+Ordinary Seaman - os
+Oriental - e (East)
+Other Ranks - or (military term for non-commissioned ranks)
+Ounce - oz (abbreviation)
+Outsized - os
+Over the top - ott
+Overdose - od
+Oxygen - o
+Clues beginning with P[edit]
+Page - p
+Painters - ra (Royal Academy)
+Paramilitaries - eta (Basque Nationalists), ira (Irish Republican Army), uff (Ulster Freedom Fighters), uda (Ulster Defence Association)
+Parking - p
+Party - lab, lib or ld, con or c or tory (UK political parties), do
+Peacekeepers - un (United Nations)
+Pencil - hb
+Penny - p, d (old penny), cu (copper)
+Phone company - bt
+Physical education - pe
+Physical training - pt
+Piano - pt
+Pint - pt
+place - pl, set, site, spot
+Plane - mig (type of plane)
+Plate - l or p (L-plate and P-plate)
+Poem - if (Kipling)
+Poet - ts (T.S. Eliot)
+Point - n, e, s, w (and other compass bearings)
+Pole - n (north) or s (south)
+Policeman/men - pc (Police Constable), di (Detective Inspector), met (Metropolitan Police), cid (Criminal Investigation Department)
+Politician - mp
+Posh - u (short for upper class)
+Post office - po
+Potassium - k (chemical symbol)
+Pound - lb (weight), l (currency)
+Priest - pr, rev (reverend), rr (Right Reverend), dd (Doctor of Divinity), fr (Father), eli (Eli (Bible))
+Prime Minister - pm
+Prisoner of war - pow
+Promises - ious (I owe yous)
+Province - ni (Northern Ireland)
+Pub - ph (Public House)
+Clues beginning with Q[edit]
+Quarter - n, s, e, w (compass direction)
+Quartet - iv (four in Roman numerals)
+Queen - q, er (Elizabeth Regina), hm (Her Majesty)
+Quiet/quietly - p (piano) sh
+Clues beginning with R[edit]
+Railway - r, ry or br (British Rail)
+Rechabite - tt (Rechabite - tee-total)
+Record - ep (extended play record), lp (long playing record)
+Ref - ump (referee - umpire)
+Regina - r
+Retired - ret
+Reverend - rr (Right Reverend), dd (Doctor of Divinity), rev
+Rex - r
+Right Reverend - rr
+Right - r
+Ring - o (the letter O looks like a ring)
+River - r, ma (Ma River)
+Road - rd or ai (looks like A1)
+Rolls Royce - rr
+Roman Catholic - rc
+Rook - r
+Royal Academy - ra
+Royal Artillery - ra
+Royal Engineers - re
+Royal Marines - rm
+Royal Navy - rn
+Rugby (Union) - ru
+Run - r
+Clues beginning with S[edit]
+Sailor - ab (able-bodied seaman), tar (slang), rn, salt, jack, hand, os (ordinary seaman)
+Saint - st or s
+Same - do (ditto)
+Sappers - re (the Royal Engineers equivalent of "private")
+Satisfactory - s
+Say - e.g. (short for the Latin exempli gratia)
+Seaman - ab (able-bodied seaman)
+Second - s or mo (moment)
+Secret service - ss
+Secretary - pa (personal assistant)
+Senior Service - rn (Royal Navy)
+Setter - i or me (meaning the setter of the crossword)
+Sex appeal - it (after Clara Bow - the It girl) or sa
+Shilling - s
+Significant other - so
+Ship - ss (steam ship)
+Shirt - t
+Short wave - sw
+Silk - qc or kc (From Queen's—or King's—Counsel)
+Silver - ag (chemical symbol)
+Sodium - na (chemical symbol)
+Small - s
+Softly - p (musical notation)
+Soldier - rm (Royal Marine), re (Royal Engineer), gi (General Infantryman), ant, vet
+Soldiers - men, or (Other Ranks)
+Son - s
+South - s
+Spectacles - oo
+State - any abbreviation of an American State (e.g. CA, FL ..)
+Steam Ship - ss
+Stone - st
+Street - st
+Student - l (learner) or nus (National Union of Students)
+Study - con
+Stumped - st
+Submarine - u (U-boat) or sub
+Sweat - bo (Body odor)
+Clues beginning with T[edit]
+Tabloid - sun, rag
+Tar - ab (able-bodied seaman)
+Tax - vat (Value added tax)
+Teacher - don
+Teachers - nut (National Union of Teachers)
+Team - xi (Roman numerals for eleven players in a football or cricket team)
+Teetotal - tt or aa (from Alcoholics Anonymous)
+Ten - x (Roman numerals) or io (IO looks like 10)
+Territorial Army - ta
+Terrorists - eta (Basque Nationalists), ira (Irish Republican Army), uff (Ulster Freedom Fighters), uda (Ulster Defence Association)
+Thanks- TA
+That is - ie (from the Latin id est) or sc (from the Latin scilicet meaning namely = that is)
+Theologian - dd (Doctor of Divinity)
+This month - inst (from the Latin instante mense)
+Thousand - g (grand), m (Roman numeral), or k (kilo-)
+Thus - ie (short for the Latin id est), so, sic
+Time - t, s, m, age
+Times - x (multiplication symbol)
+Toilet - wc (water closet)
+Tory - con (slang for Conservative)
+Trendy - in (euphemism)
+Tripod - Y (shape of a Tripod)
+Tungsten - w (chemical symbol)
+Tyro - l (for learner)
+Clues beginning with U[edit]
+Ulster - ni (Northern Ireland)
+Ulster Defence Association - uda
+Ulster Freedom Fighters - uff
+Ultimate - z (last or ultimate letter of the alphabet)
+United Nations - un
+Unknown - x, y or z (Mathematical variable)
+University - u or ou (Open University) or up (in the UK one goes up to university)
+Clues beginning with V[edit]
+Value added tax - vat
+Variable - x, y or z (Mathematical unknown)
+Versus - v or vs
+Very - v
+Vessel - ss
+Viscount - vis (abbreviation)
+Volunteers - ta (Territorial Army)
+Vote - x
+Clues beginning with W[edit]
+Way - rd (road), st (street), ave (avenue)
+Weight - g (gram), lb (pound)
+Wheel - o
+Whistle-blower - ref (referee)
+Wide - w (cricket)
+Wife - w
+With - w
+Without - wo
+Work - w, op (operation), opus (classical music)
+Worker - ant
+Clues beginning with X[edit]
+X - IO (The letters IO look like the number 10)
+Clues beginning with Y[edit]
+Yard - yd or y
+Year - y or yr
+Yours Truly- ID or I
+Clues beginning with Z[edit]
+Zero - o

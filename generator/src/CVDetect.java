@@ -144,30 +144,31 @@ public class CVDetect {
 	        Crossword myCrossword = new Crossword(boxs,row+1,col+1);
 	        myCrossword.calculateBoxNumbers();
 	        
-	     	return myCrossword;
+	     	//return myCrossword;
 
 	        
 	        
 	        //Calculate the center point of each contour for display
-	       /* for (MatOfPoint contour : crossword_contours) 
+	        for (MatOfPoint contour : crossword_contours) 
 	        {
 	        	Point center = calcCenter(contour);
 	        	Imgproc.circle(img, center, 10, new Scalar(255,0,0));
-	        }*/
+	        }
 	        
 	        
 	        
 	        //Debug img processing
-	        /*System.out.println(contours.size());
-	        DispImg(img,"OG");
-	        DispImg(gImg,"Grey");
-	        DispImg(blurImg,"Blur");
-	        DispImg(threshImg,"thresh");
+	       
+	        //DispImg(img,"OG");
+	        //DispImg(gImg,"Grey");
+	        //DispImg(blurImg,"Blur");
+	        //DispImg(threshImg,"thresh");
 	        Imgproc.drawContours(img, crossword_contours, -1, new Scalar(0,255,0),5);
 	        Mat smallImg = new Mat();
 	        Imgproc.resize(img, smallImg, new Size(1000,750));
-	        DispImg(smallImg,"contours");*/
-	        
+	        DispImg(smallImg,"contours");
+	        myCrossword.print();
+	        return myCrossword;
 		        
 	}
 	

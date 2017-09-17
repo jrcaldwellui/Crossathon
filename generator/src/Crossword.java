@@ -164,6 +164,7 @@ public class Crossword
 				}
 				length++;
 			}
+			return length;
 		}
 		return 0;
 		
