@@ -28,4 +28,8 @@ public class Word {
         }
         return output;
     }
+
+    public String getWord() {
+        return word;
+    }
 }

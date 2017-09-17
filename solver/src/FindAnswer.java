@@ -1,11 +1,11 @@
-import java.lang.reflect.AnnotatedType;
+//import java.lang.reflect.AnnotatedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FindAnswer {
-    public static ArrayList<String> getAnswer(HashMap<Integer,Clue> clues, HashMap<Integer,Word> syns, String clue)
+    public static ArrayList<String> getAnswer(ArrayList<String> returnArray,HashMap<Integer,Clue> clues,
+                                              HashMap<Integer,Word> syns, String clue)
     {
-        ArrayList<String> returnArray = new ArrayList<>();
         String synToAdd="";
         if(clues.containsKey(clue.hashCode()))
         {
@@ -31,7 +31,7 @@ public class FindAnswer {
     public static ArrayList<String> narrowAnswerKnown(ArrayList<String> answers,String known)
     {
         ArrayList<String> narrowedDown;
-        narrowedDown=new ArrayList<String>(answers);
+        narrowedDown=answers;
         String tempString;
         for(int i=0; i<narrowedDown.size(); i++) {
             tempString = narrowedDown.get(i);
@@ -48,7 +48,7 @@ public class FindAnswer {
     public static ArrayList<String> narrowAnswerLen(ArrayList<String> answers,int desiredLength)
     {
         ArrayList<String> narrowedDown;
-        narrowedDown=new ArrayList<String>(answers);
+        narrowedDown=answers;
         String tempString;
         for(int i=0; i<narrowedDown.size(); i++)
         {
