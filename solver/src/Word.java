@@ -18,9 +18,14 @@ public class Word {
     {
         char[] temp=input.toCharArray();
         Arrays.sort(temp);
-        int tempHashVal = new String(temp).hashCode();
+        String sortedTemp=new String(temp);
+        sortedTemp=sortedTemp.trim();
+        int tempHashVal =sortedTemp.hashCode();
         ArrayList<String> output = variations.get(tempHashVal);
-        output.remove(input);
+        if(output.contains(input))
+        {
+            output.remove(input);
+        }
         return output;
     }
 }
