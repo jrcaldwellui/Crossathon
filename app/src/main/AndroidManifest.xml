@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TakePicGrid" />
-        <activity android:name=".TakePicColumn"></activity>
+        <activity android:name=".TakePicColumn" />
+        <activity android:name=".InteractiveSolver"></activity>
     </application>
 
 </manifest>

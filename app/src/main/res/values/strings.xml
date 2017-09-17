@@ -3,4 +3,5 @@
     <string name="new_puzzle_button">New Puzzle</string>
     <string name="PhotoButton">Take Photo</string>
     <string name="Continue">Good?</string>
+    <string name="solvePage">SOLVE!</string>
 </resources>

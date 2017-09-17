@@ -16,9 +16,9 @@ public class TakePicGrid extends AppCompatActivity {
 
     static int count = 0;
 
-
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView grid;
+    Button ContinueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,12 @@ public class TakePicGrid extends AppCompatActivity {
         grid = (ImageView) findViewById(R.id.grid);
 
         //Disables button if no camera
-        if(!hasCamera()) {
+        if (!hasCamera()) {
             GridPicButton.setEnabled(false);
         }
         // Don't show unless the camera was used
-        Button ContinueButton = (Button) findViewById(R.id.Continue);
-        if(count == 0) {
+        ContinueButton = (Button) findViewById(R.id.Continue);
+        if (count == 0) {
             ContinueButton.setEnabled(false);
         }
     }
@@ -52,7 +52,10 @@ public class TakePicGrid extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
 
         // Shows that camera was used
-//        count++;
+        ContinueButton = (Button) findViewById(R.id.Continue);
+        ContinueButton.setEnabled(true);
+
+
     }
 
     // Returns the taken image
