@@ -72,7 +72,6 @@ public class SolvePuzzle {
                     return output.get(0);
                 }
             }
-            System.out.println("here5");
             String tempDef;
             int count=0;
             int highestCount=0;

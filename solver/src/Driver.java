@@ -191,7 +191,7 @@ public class Driver {
             word=word.trim();
             wordsOnLine.add(word);
             /* if want more */
-            /*
+            
            for(int j=0; j<wordsOnLine.size(); j++)
             {
                 if(!SolvePuzzle.words.containsKey(wordsOnLine.get(j).hashCode()))
@@ -199,15 +199,18 @@ public class Driver {
                     SolvePuzzle.words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
                 }
             }
-            */
+
+
 
             /* or if want to limit */
+            /*
             if(wordsOnLine.size()>1)
             {
                 word = wordsOnLine.get(0);
                 wordsOnLine.remove(word);
                 SolvePuzzle.words.put(word.hashCode(), new Word(word, wordsOnLine));
             }
+            */
 
             wordsOnLine.clear();
         }
