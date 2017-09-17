@@ -19,7 +19,7 @@ public class Driver {
         //path.read()
       //  FileInputStream file = new FileInputStream("allClues.txt");
         //URL path = Driver.class.getResource("allClues.txt");
-        FileReader file =  new FileReader("allClues.txt");
+        FileReader file =  new FileReader("/Users/nicklitterio/StudioProjects/CrosswordNew/app/src/main/java/com/example/nicklitterio/crosswordnew/allClues.txt");
         BufferedReader buffer = new BufferedReader(file);
 
         String tempLine;
@@ -160,7 +160,7 @@ public class Driver {
 
         //read in thesaurus
         //path = Driver.class.getResource("mobyThes.txt");
-        file =  new FileReader("mobyThes.txt");
+        file =  new FileReader("/Users/nicklitterio/StudioProjects/CrosswordNew/app/src/main/java/com/example/nicklitterio/crosswordnew/mobyThes.txt");
         buffer = new BufferedReader(file);
         boolean onWord;
         String word="";
@@ -226,7 +226,7 @@ public class Driver {
 
         //Ability to do anagrams
         //path = Driver.class.getResource("dict.txt");
-        file =  new FileReader("dict.txt");
+        file =  new FileReader("/Users/nicklitterio/StudioProjects/CrosswordNew/app/src/main/java/com/example/nicklitterio/crosswordnew/dict.txt");
         buffer = new BufferedReader(file);
         int tempLen=0;
         char[] temp;
@@ -261,7 +261,7 @@ public class Driver {
 
         //Ability to dictionary lookup
         //path = Driver.class.getResource("dictAndDef.txt");
-        file =  new FileReader("dictAndDef.txt");
+        file =  new FileReader("/Users/nicklitterio/StudioProjects/CrosswordNew/app/src/main/java/com/example/nicklitterio/crosswordnew/dictAndDef.txt");
         buffer = new BufferedReader(file);
         boolean foundDef;
         String definition;

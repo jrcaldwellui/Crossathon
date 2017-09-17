@@ -20,25 +20,25 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="42dp" />
 
-        <ImageView
-            android:id="@+id/grid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="53dp"
-            android:layout_marginTop="50dp"
-            android:contentDescription="Picture of the grid"
-            android:minHeight="300dp"
-            android:minWidth="300dp"
-            app:layout_constraintBottom_toTopOf="@+id/GridCamera"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1"
-            app:layout_constraintVertical_bias="0.339" />
+    <ImageView
+        android:id="@+id/grid"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="Picture of the grid"
+        android:minHeight="300dp"
+        android:minWidth="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/GridCamera"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
         <Button
             android:id="@+id/Continue"
@@ -68,4 +68,22 @@
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="12dp"
         app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/grid"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="47dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp" />
+
 </android.support.constraint.ConstraintLayout>
