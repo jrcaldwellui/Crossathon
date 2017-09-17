@@ -8,6 +8,8 @@ public class Driver {
     public static void main (String args[]) throws IOException {
         //File from https://github.com/donohoe/nyt-crossword/blob/master/clues.txt
         //Dict from https://raw.githubusercontent.com/adambom/dictionary/master/dictionary.txt
+        //Thes from https://justenglish.me/2014/04/18/synonyms-for-the-96-most-commonly-used-words-in-english/
+        //mobyThes from http://www.gutenberg.org/files/3202/
         URL path = Driver.class.getResource("allClues.txt");
         FileReader file =  new FileReader(path.getFile());
         BufferedReader buffer = new BufferedReader(file);
@@ -79,7 +81,8 @@ public class Driver {
         }
 
         //read in common thesaurus
-        path = Driver.class.getResource("commonThes.txt");
+       // path = Driver.class.getResource("commonThes.txt");
+        path = Driver.class.getResource("mobyThes.txt");
         file =  new FileReader(path.getFile());
         buffer = new BufferedReader(file);
         HashMap<Integer,Word> words = new HashMap<>();
@@ -91,9 +94,8 @@ public class Driver {
 
         //allThes.txt
         while ((tempLine = buffer.readLine())!=null)
+        //for(int i=0; i<5; i++)
         {
-            word="";
-            onWord=false;
             //tempLine=buffer.readLine();
             tempLine=tempLine.toLowerCase();
             tempLine=tempLine.trim();
@@ -104,11 +106,13 @@ public class Driver {
             tempLine=tempLine.trim();
             for(int j=0; j<tempLine.length(); j++)
             {
-                if((int)tempLine.charAt(j)>122 ||(int)tempLine.charAt(j)<97)
+                if(((int)tempLine.charAt(j)>122 ||(int)tempLine.charAt(j)<97) &&(
+                        (int)tempLine.charAt(j)!=32 && tempLine.charAt(j)!='-'))
                 {
                     if(onWord)
                     {
                         word=word.trim();
+                        //word=Word.makeOneWord(word);
                         wordsOnLine.add(word);
                     }
                     onWord=false;
@@ -118,88 +122,57 @@ public class Driver {
                 {
                     onWord=true;
                 }
-                if(onWord)
+                if(onWord && (int)tempLine.charAt(j)!=32 && tempLine.charAt(j)!='-')
                 {
                     word=word+tempLine.charAt(j);
                 }
             }
             word=word.trim();
+            //word=Word.makeOneWord(word);
             wordsOnLine.add(word);
-            for(int j=0; j<wordsOnLine.size(); j++)
-            {
-                if(!words.containsKey(wordsOnLine.get(j).hashCode()))
-                {
-                    words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
-                }
+           //for(int j=0; j<wordsOnLine.size(); j++)
+            //{
+              //  if(!words.containsKey(wordsOnLine.get(j).hashCode()))
+                //{
+                    words.put(wordsOnLine.get(0).hashCode(), new Word(wordsOnLine.get(0), wordsOnLine));
+                //}
                 //System.out.println(wordsOnLine.get(j));
-            }
-            wordsOnLine.clear();
-
-        }
-        /*
-        while ((tempLine = buffer.readLine())!=null)
-        {
-            word="";
-            onWord=false;
-            //tempLine=buffer.readLine();
-            tempLine=tempLine.toLowerCase();
-            tempLine=tempLine.trim();
-            for(int j=0; j<tempLine.length(); j++)
-            {
-                if((int)tempLine.charAt(j)>122 ||(int)tempLine.charAt(j)<97)
-                {
-                    if(onWord)
-                    {
-                        word=word.trim();
-                        wordsOnLine.add(word);
-                    }
-                    onWord=false;
-                    word="";
-                }
-                else
-                {
-                    onWord=true;
-                }
-                if(onWord)
-                {
-                    word=word+tempLine.charAt(j);
-                }
-            }
-            word=word.trim();
-            wordsOnLine.add(word);
-            for(int j=0; j<wordsOnLine.size(); j++)
-            {
-                if(!words.containsKey(wordsOnLine.get(j).hashCode()))
-                {
-                    words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
-                }
-                writer.write(wordsOnLine.get(j) + " ");
-                //System.out.println(wordsOnLine.get(j));
-            }
-            if(onWord) {
-                count++;
-                writer.newLine();
-            }
+            //}
+            //count++;
             wordsOnLine.clear();
         }
-        */
         //System.out.println(count);
-        //writer.close();
-        //String testst = "angry";
-        //System.out.println(words.containsKey(testst.hashCode()));
+        /*
+        String tesads= "radical";
+       System.out.println(words.containsKey(tesads.hashCode()));
+       for(int test=0; test<words.get(tesads.hashCode()).getSynonyms().size(); test++)
+       {
+           System.out.print(", " + words.get(tesads.hashCode()).getSynonyms().get(test));
+       }
+       */
 
 
         Scanner input = new Scanner(System.in);
-        String tempStr = "";
+        String clueStr = "";
         int len;
         String like;
-        while(!tempStr.equals("-1")) {
+        while(!clueStr.equals("-1")) {
             System.out.println("Enter the clue:");
-            tempStr = input.nextLine();
-            tempStr = tempStr.trim();
-            tempStr = tempStr.toLowerCase();
+            clueStr = input.nextLine();
+            clueStr = clueStr.trim();
+            clueStr = clueStr.toLowerCase();
             //System.out.println(tempStr);
-            ArrayList<String> output = FindAnswer.getAnswer(clues,words, tempStr);
+            ArrayList<String> output = FindAnswer.getAnswer(clues,words, clueStr);
+            if(words.containsKey(clueStr.hashCode()))
+            {
+                for(int i=0; i<words.get(clueStr.hashCode()).getSynonyms().size(); i++)
+                {
+                    if(!output.contains(words.get(clueStr.hashCode()).getSynonyms().get(i)))
+                    {
+                        output.add(words.get(clueStr.hashCode()).getSynonyms().get(i));
+                    }
+                }
+            }
             if (output != null) {
                 for (int i = 0; i < output.size(); i++) {
                     System.out.println(output.get(i));
