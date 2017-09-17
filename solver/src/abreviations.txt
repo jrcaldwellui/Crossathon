@@ -12,99 +12,195 @@
 (Ace) [a]
 (Advert) [ad]
 (Afternoon) [pm]
-(Against) - v or vs (versus)
-Agent - rep (representative)
-Agricultural - ag
-Air conditioning - ac
-Airman - ac (aircraftman)
-Alien - et (extraterrestrial)
-Also known as - aka
-Aluminium - al (chemical symbol)
-Ambassador - he (his/her excellency)
-America - am, us or usa (United States of America)
-American ship - uss
-Amnesty - ai (Amnesty International)
-Anglican - ce (Church of England)
-And French - et
-Answer - ay(e)
-Area - a
-Arbiter - ref (referee)
-Army cop - mp (Military Policeman)
-Army corps - reme (Royal Electrical and Mechanical Engineers (British army))
-Arsenic - as (chemical symbol)
-Artificial intelligence - ai
-Artillery - ra (Royal Artillery)
-Artists - ra (Royal Academy)
-Attorney - da (District Attorney) or pa (Practicing Attorney)
-Australia - aus or oz (slang name for Australia)
-Avenue - ave
-Bachelor of Arts - ba
-Bachelor of Medicine - bm
-Basque nationalists - eta
-Bearing - n, e, s, w, ne, nw etc. (compass points)
-Beginner - l (for Learner)
-Bend - s or u (U-bend and S-bend)
-Bible - av (King James bible Authorized version)
-Bill - ac (account) or iou
-Bird - tit
-Bishop - b or rr (Right Reverend) or dd (Doctor of Divinity)
-Bob - s (shilling)
-Bone - os
-Book (or books) - nt (New Testament), ot (Old Testament), ms (Manuscript), gen (Genesis)
-Boy - b
-Bridge player - n, e, s, w
-Byte - b
-Calcium - ca
-California - ca
-Car - t (Model T), rr (Rolls-Royce)
-Care of - co
-Caught - c or ct
-Celsius - c
-Cent - c
-Centigrade - c
-Century - c
-Certificate - x, u, pg, r, g (from the film certificates)
-Charged - ion
-Chartered accountant - ca
-Chief - ch
-Chlorine - cl (chemical symbol)
-Chromosome - x or y
-Church - ch or ce (Church of England)or rc (Roman Catholic)
-Circa - c
-Circle - o (the letter O is a circle)
-City - ny (New York), la (Los Angeles), or ec (postcode for City of London)
-Club - y (YMCA)
-Coin - p (penny), d (from the Latin denarius) or c (cent) - d or c would usually have "old" or "American" as well as "coin".
-Colonel - col
-Colt - c
-Commercial - ad
-Communist - red
-Companion - CH (Order of the Companions of Honour)
-Company - co
-Compare - cf (abbreviation of the Latin confer)
-Compass point - n, e, s, w (and other bearings)
-Computer - pc
-Concerning - re
-Conservationists - nt (National Trust)
-Conservative - c, con
-Constable - pc (police constable)
-Constant - ℯ or pi (mathematical constants)
-Copper - p (penny), d (denarius), cu (chemical symbol), pc (police constable)
-Corner - SE,NW,NE,SW (Any two direction)
-Councillor - cl, clr, cllr
-Court - ct
-Credit - cr
-Criminal - con
-Cross - x
-Current - ac (alternating current), dc (direct current), ad (Anno Domini) or amp
-Current account - ca
-Cystic fibrosis - cf
-Date - d
-Daughter - d
-Dead or Died - d, dec (deceased), ex, ob (abbreviation)
-Debts - ious (IOU)
-Deceased - d, dec, ex
-Decoration - vc (Victoria Cross), gc (George Cross)
+(Against) [v]
+(Against) [vs]
+(Against) [versus]
+(Agent) [rep]
+(Agent) [representative]
+(Agricultural) [ag]
+(Air conditioning) [ac]
+(Airman) [aircraftman]
+(Alien) [et]
+(Alien) [extraterrestrial]
+(Also known as) [aka]
+(Aluminium) [al]
+(Ambassador) [he]
+(America) [am]
+(America) [us]
+(America) [usa]
+(American ship) [uss]
+(Amnesty) [ai]
+(Amnesty International) [ai]
+(Anglican) [ce]
+(Church of England) [ce]
+(And French) [et]
+(Answer) [ay]
+(Answer) [e]
+(Area) [a]
+(Arbiter) [ref]
+(referee) [ref]
+(Arbiter) [referee]
+(Army cop) [mp]
+(Army cop) [Military Policeman]
+(Military Policeman) [mp]
+(Army corps) [reme]
+(Royal Electrical and Mechanical Engineers (British army)) [reme]
+(Royal Electrical and Mechanical Engineers (British army)) [Army corps]
+(Arsenic) [as]
+(Artificial intelligence) [ai]
+(Artillery) [ra]
+(Royal Artillery) [ra]
+(Artists) [ra]
+(Royal Academy) [ra]
+(Attorney) [da]
+(Attorney) [District Attorney]
+(Practicing Attorney) [pa]
+(District Attorney) [da]
+(Australia) [aus]
+(Australia) [oz]
+(slang name for Australia) [oz]
+(Avenue) [ave]
+(Bachelor of Arts) [ba]
+(Bachelor of Medicine) [bm]
+(Basque nationalists) [eta]
+(Bearing) [n]
+(Bearing) [e]
+(Bearing) [s]
+(Bearing) [w]
+(Bearing) [ne]
+(Bearing) [nw]
+(Bearing) [se]
+(Bearing) [sw]
+(compass points) [n]
+(compass points) [e]
+(compass points) [s]
+(compass points) [w]
+(compass points) [ne]
+(compass points) [nw]
+(compass points) [se]
+(compass points) [sw]
+(Beginner) [l]
+(Beginner) [for learner]
+(Bend) [s]
+(Bend) [u]
+(U-bend) [u]
+(S-bend) [S]
+(Bible) [av]
+(King James bible Authorized version) [av]
+(Bill) [ac]
+(Bill) [account]
+(Bill) [iou]
+(account) [ac]
+(Bird) [tit]
+(Bishop) [b]
+(Right Reverend) [rr]
+(Doctor of Divinity) [dd]
+(Bob) [s]
+(shilling) [s]
+(Bob) [shilling]
+(Bone) [os]
+(New Testament) [nt]
+(Old Testament) [ot]
+(Manuscript) [ms]
+(Genesis) [gen]
+(Boy) [b]
+(Bridge player) [n]
+(Bridge player) [e]
+(Bridge player) [s]
+(Bridge player) [w]
+(Byte) [b]
+(Calcium) [ca]
+(California) [ca]
+(Model T) [t]
+(Rolls-Royce) [rr]
+(Care of) [co]
+(Caught) [c]
+(Caught) [ct]
+(Celsius) [c]
+(Cent) [c]
+(Centigrade) [c]
+(Century) [c]
+(Certificate) [x]
+(Certificate) [u]
+(Certificate) [pg]
+(Certificate) [r]
+(Certificate) [g]
+(Charged) [ion]
+(Chartered accountant) [ca]
+(Chief) [ch]
+(Chlorine) [cl]
+(Chromosome) [x]
+(Chromosome) [y]
+(Church) [ch]
+(Church of England) [ce]
+(Roman Catholic) [rc]
+(Circa) [c]
+(Circle) [o]
+(New York) [ny]
+(Los Angeles) [la]
+(postcode for City of London) [ec]
+(Club) [y]
+(YMCA) [y]
+(YMCA) [club]
+(penny) [p]
+(from the Latin denarius) [d]
+(cent) [c]
+(Colonel) [col]
+(Colt) [c]
+(Commercial) [ad]
+(Communist) [red]
+(Companion) [CH]
+(Order of the Companions of Honour) [CH]
+(Company) [co]
+(Compare) [cf]
+(abbreviation of the Latin confer) [cf]
+(Computer) [pc]
+(Concerning) [re]
+(Conservationists) [nt]
+(National Trust) [nt]
+(Conservative) [c]
+(Conservative) [con]
+(police constable) [pc]
+(Constant) [e]
+(mathematical constants) [pi]
+(Constant) [pi]
+(mathematical constants) [e]
+(Copper) [p]
+(Copper) [cu]
+(Corner) [SE]
+(Corner) [NE]
+(Corner) [SW]
+(Any two direction) [NW]
+(Any two direction) [SE]
+(Any two direction) [NE]
+(Any two direction) [SW]
+(Any two direction) [NW]
+(Councillor) [cl]
+(Councillor) [clr]
+(Councillor) [cllr]
+(Court) [ct]
+(Credit) [cr]
+(Criminal) [con]
+(Cross) [x]
+(Current) [ac]
+(Current) [dc]
+(alternating current) [ad]
+(direct current) [dc]
+(Anno Domini) [ad]
+(Current) [amp]
+(Current account) [ca]
+(Cystic fibrosis) [cf]
+(Date) [d]
+(Daughter) [d]
+(Dead or Died) [d]
+(deceased) [dec]
+(Dead or Died) [ex]
+(abbreviation) [ob]
+(Debts) [ious]
+(debts) [IOU]
+(Deceased) [d]
+(Deceased) [ex]
+(Decoration) - vc (Victoria Cross), gc (George Cross)
 Degree - deg, c (Celsius or Centigrade), f (Fahrenheit), ba (Bachelor of Arts), ma (Master of Arts).
 Detectives - cid
 Detective inspector - di

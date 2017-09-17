@@ -8,7 +8,8 @@ public class Driver {
         //Dict from https://raw.githubusercontent.com/adambom/dictionary/master/dictionary.txt
         //Thes from https://justenglish.me/2014/04/18/synonyms-for-the-96-most-commonly-used-words-in-english/
         //mobyThes from http://www.gutenberg.org/files/3202/
-        URL path = Driver.class.getResource("allClues.txt");
+        //Dictionary from https://raw.githubusercontent.com/sujithps/Dictionary/master/Oxford%20English%20Dictionary.txt
+        URL path = Driver.class.getResource("dict.txt");
         FileReader file =  new FileReader(path.getFile());
         BufferedReader buffer = new BufferedReader(file);
 
@@ -134,6 +135,17 @@ public class Driver {
             else {
                 SolvePuzzle.clues.put(clue.hashCode(), tempClue);
             }
+            /* If want to flip
+            if (!clue.contains(" ")) {
+                tempClue = new Clue(answer);
+                tempClue.addAnswer(clue);
+                if (SolvePuzzle.clues.containsKey(answer.hashCode())) {
+                    SolvePuzzle.clues.get(answer.hashCode()).addAnswer(clue);
+                } else {
+                    SolvePuzzle.clues.put(answer.hashCode(), tempClue);
+                }
+            }
+            */
         }
 
         //read in thesaurus
@@ -191,7 +203,9 @@ public class Driver {
         path = Driver.class.getResource("dict.txt");
         file =  new FileReader(path.getFile());
         buffer = new BufferedReader(file);
+        int tempLen=0;
         char[] temp;
+
 
         //read in dict.txt file : one word per line
         while ((tempLine = buffer.readLine())!=null)
@@ -207,6 +221,67 @@ public class Driver {
             {
                 SolvePuzzle.dictAnagrams.put(tempHashVal,new ArrayList<>());
                 SolvePuzzle.dictAnagrams.get(tempHashVal).add(tempLine);
+            }
+            tempLen=tempLine.length();
+            if(SolvePuzzle.dictByLen.containsKey(tempLen))
+            {
+                SolvePuzzle.dictByLen.get(tempLen).add(tempLine);
+            }
+            else
+            {
+                SolvePuzzle.dictByLen.put(tempLen,new ArrayList<>());
+                SolvePuzzle.dictByLen.get(tempLen).add(tempLine);
+            }
+        }
+
+        //Ability to dictionary lookup
+        path = Driver.class.getResource("dictAndDef.txt");
+        file =  new FileReader(path.getFile());
+        buffer = new BufferedReader(file);
+        boolean foundDef;
+        String definition;
+        boolean empty;
+
+        //read in dict.txt file : one word per line
+        while ((tempLine = buffer.readLine())!=null)
+        {
+            answer="";
+            definition="";
+            empty=false;
+            tempLine=tempLine.trim();
+            tempLine=tempLine.toLowerCase();
+            foundDef=false;
+            for(int j=0; j<tempLine.length(); j++)
+            {
+                if(j==0 && (int)tempLine.charAt(j)!=32)
+                {
+                    foundDef=true;
+                }
+                if(j==0 && ((int)tempLine.charAt(j)>122 ||(int)tempLine.charAt(j)<97))
+                {
+                    j=tempLine.length();
+                    empty=true;
+                }
+                else if(((int)tempLine.charAt(j)>126 || ((int)tempLine.charAt(j)<97)))
+                {
+                    foundDef = false;
+                    definition = definition + tempLine.substring(j, tempLine.length());
+                    j = tempLine.length();
+                }
+                if(foundDef &&!empty)
+                {
+                    answer=answer+tempLine.charAt(j);
+                }
+            }
+            if(!empty) {
+                answer=answer.trim();
+                definition=definition.trim();
+
+                tempHashVal=answer.hashCode();
+                if(!SolvePuzzle.dict.containsKey(tempHashVal))
+                {
+                    SolvePuzzle.dict.put(tempHashVal,definition);
+                }
             }
         }
 
