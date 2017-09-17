@@ -1,5 +1,7 @@
 package com.example.nicklitterio.crosswordnew;
 
+import android.content.Context;
+
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -11,8 +13,13 @@ public class Driver {
         //Thes from https://justenglish.me/2014/04/18/synonyms-for-the-96-most-commonly-used-words-in-english/
         //mobyThes from http://www.gutenberg.org/files/3202/
         //Dictionary from https://raw.githubusercontent.com/sujithps/Dictionary/master/Oxford%20English%20Dictionary.txt
-        URL path = Driver.class.getResource("allClues.txt");
-        FileReader file =  new FileReader(path.getFile());
+        //Driver.mContext=mContext;
+        //InputStream path =null;
+        //path=mContext.getAssets().open("allClues.txt");
+        //path.read()
+      //  FileInputStream file = new FileInputStream("allClues.txt");
+        //URL path = Driver.class.getResource("allClues.txt");
+        FileReader file =  new FileReader("allClues.txt");
         BufferedReader buffer = new BufferedReader(file);
 
         String tempLine;
@@ -152,8 +159,8 @@ public class Driver {
         }
 
         //read in thesaurus
-        path = Driver.class.getResource("mobyThes.txt");
-        file =  new FileReader(path.getFile());
+        //path = Driver.class.getResource("mobyThes.txt");
+        file =  new FileReader("mobyThes.txt");
         buffer = new BufferedReader(file);
         boolean onWord;
         String word="";
@@ -218,8 +225,8 @@ public class Driver {
         }
 
         //Ability to do anagrams
-        path = Driver.class.getResource("dict.txt");
-        file =  new FileReader(path.getFile());
+        //path = Driver.class.getResource("dict.txt");
+        file =  new FileReader("dict.txt");
         buffer = new BufferedReader(file);
         int tempLen=0;
         char[] temp;
@@ -253,8 +260,8 @@ public class Driver {
         }
 
         //Ability to dictionary lookup
-        path = Driver.class.getResource("dictAndDef.txt");
-        file =  new FileReader(path.getFile());
+        //path = Driver.class.getResource("dictAndDef.txt");
+        file =  new FileReader("dictAndDef.txt");
         buffer = new BufferedReader(file);
         boolean foundDef;
         String definition;

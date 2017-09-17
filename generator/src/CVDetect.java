@@ -18,7 +18,7 @@ import org.opencv.imgproc.Moments;
 
 
 public class CVDetect {
-	    public static void main(String args[]) {
+	    public static Crossword genCrossword(String imgPath) {
 	    	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 	    	
 	        Mat gImg = new Mat();
@@ -26,7 +26,7 @@ public class CVDetect {
 	        Mat blurImg = new Mat();
 	        
 	        //Get contours of image (basically grabs a list of shape outlines)
-	        Mat img = Imgcodecs.imread("example_imgs/puzzleEZ.jpg");
+	        Mat img = Imgcodecs.imread(imgPath);
 	        Imgproc.cvtColor(img,gImg,Imgproc.COLOR_BGR2GRAY);
 	        Imgproc.GaussianBlur(gImg, blurImg, new Size(15,15), 0);
 	        Imgproc.adaptiveThreshold(blurImg, threshImg, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, 199, 7);
@@ -90,6 +90,8 @@ public class CVDetect {
 	            	return (int)(Math.signum(box1.loc.x - box2.loc.x) * Math.ceil(Math.abs(box1.loc.x - box2.loc.x)));
 	            }
 	         });
+	        
+	     
 	       
 	        ArrayList<Double> diffs = new ArrayList<Double>();
 	        for (int i = 1; i < boxs.size(); i++) 
@@ -100,10 +102,8 @@ public class CVDetect {
 	        Collections.sort(diffs);
 	        int colChange = findSignificantXChange(diffs);
 	        double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
-	        System.out.println(rowWidth);
 	        ArrayList<Integer> locationOf = new ArrayList<Integer>();
 	        int row = 0;
-	        System.out.println(boxs.size());
 	        for (Box box : boxs) 
 	        {
 	        	box.row = row;
@@ -128,11 +128,9 @@ public class CVDetect {
 	        	diffs.add( boxs.get(i).loc.y - boxs.get(i-1).loc.y );
 	        }
 	        Collections.sort(diffs);
-
 	        int rowChange = findSignificantXChange(diffs);
 	        double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
 	        int col = 0;
-	        System.out.println(boxs.size());
 	        for (Box box : boxs) 
 	        {
 	        	box.col = col;
@@ -144,32 +142,31 @@ public class CVDetect {
 	 
 	        //make puzzle
 	        Crossword myCrossword = new Crossword(boxs,row+1,col+1);
-	        myCrossword.print();
 	        myCrossword.calculateBoxNumbers();
-	        myCrossword.printNumbers();
-	        System.out.println("1: " + myCrossword.getWordLengthAcross(40));
-	     	
+	        
+	     	return myCrossword;
 
 	        
 	        
 	        //Calculate the center point of each contour for display
-	        for (MatOfPoint contour : crossword_contours) 
+	       /* for (MatOfPoint contour : crossword_contours) 
 	        {
 	        	Point center = calcCenter(contour);
 	        	Imgproc.circle(img, center, 10, new Scalar(255,0,0));
-	        }
+	        }*/
+	        
 	        
 	        
 	        //Debug img processing
-	       /* System.out.println(contours.size());
+	        /*System.out.println(contours.size());
 	        DispImg(img,"OG");
 	        DispImg(gImg,"Grey");
 	        DispImg(blurImg,"Blur");
-	        DispImg(threshImg,"thresh");*/
+	        DispImg(threshImg,"thresh");
 	        Imgproc.drawContours(img, crossword_contours, -1, new Scalar(0,255,0),5);
 	        Mat smallImg = new Mat();
 	        Imgproc.resize(img, smallImg, new Size(1000,750));
-	        DispImg(smallImg,"contours");
+	        DispImg(smallImg,"contours");*/
 	        
 		        
 	}
@@ -182,11 +179,20 @@ public class CVDetect {
         	double currentPoint = Math.abs(nums.get(i));
         	double nextPoint = Math.abs(nums.get(i-1));
 
-        	/*if( nextPoint - currentPoint > lastPoint + currentPoint )
+
+        	if(nextPoint > 10*currentPoint)
         	{
         		return i-1;
-        	}*/
-        	if(nextPoint > 10*currentPoint)
+        	}
+        	
+        }
+        for(int i = nums.size()-2  ; i > 1; i--)
+        {
+        	double lastPoint = Math.abs( nums.get(i+1));
+        	double currentPoint = Math.abs(nums.get(i));
+        	double nextPoint = Math.abs(nums.get(i-1));
+
+        	if( nextPoint - currentPoint > lastPoint + currentPoint )
         	{
         		return i-1;
         	}
