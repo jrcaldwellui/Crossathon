@@ -219,7 +219,7 @@ public class Driver {
             }
             else
             {
-                SolvePuzzle.dictAnagrams.put(tempHashVal,new ArrayList<>());
+                SolvePuzzle.dictAnagrams.put(tempHashVal,new ArrayList<String>());
                 SolvePuzzle.dictAnagrams.get(tempHashVal).add(tempLine);
             }
             tempLen=tempLine.length();
@@ -229,7 +229,7 @@ public class Driver {
             }
             else
             {
-                SolvePuzzle.dictByLen.put(tempLen,new ArrayList<>());
+                SolvePuzzle.dictByLen.put(tempLen,new ArrayList<String>());
                 SolvePuzzle.dictByLen.get(tempLen).add(tempLine);
             }
         }
