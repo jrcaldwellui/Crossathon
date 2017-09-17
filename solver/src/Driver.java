@@ -67,6 +67,76 @@ public class Driver {
             clue=clue.trim();
             answer=answer.toLowerCase();
             answer=answer.trim();
+
+            //Vary blank for variations
+            if(clue.contains("_"))
+            {
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+                clue = clue.replace("_","__");
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+
+                clue = clue.replace("__","___");
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+
+                clue = clue.replace("___","___ ");
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+
+                clue = clue.replace("___ ","__ ");
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+
+                clue = clue.replace("__ ","_ ");
+                tempClue = new Clue(clue);
+                tempClue.addAnswer(answer);
+                if (clues.containsKey(clue.hashCode()))
+                {
+                    clues.get(clue.hashCode()).addAnswer(answer);
+                }
+                else {
+                    clues.put(clue.hashCode(), tempClue);
+                }
+
+            }
+
              //adds clue and answer to hash
             tempClue = new Clue(clue);
             tempClue.addAnswer(answer);
@@ -129,14 +199,14 @@ public class Driver {
             word=word.trim();
             //word=Word.makeOneWord(word);
             wordsOnLine.add(word);
-           //for(int j=0; j<wordsOnLine.size(); j++)
-            //{
-              //  if(!words.containsKey(wordsOnLine.get(j).hashCode()))
-                //{
-                    words.put(wordsOnLine.get(0).hashCode(), new Word(wordsOnLine.get(0), wordsOnLine));
-                //}
+           for(int j=0; j<wordsOnLine.size(); j++)
+            {
+                if(!words.containsKey(wordsOnLine.get(j).hashCode()))
+                {
+                    words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
+                }
                 //System.out.println(wordsOnLine.get(j));
-            //}
+            }
             //count++;
             wordsOnLine.clear();
         }
@@ -178,6 +248,7 @@ public class Driver {
                 dictAnagrams.get(tempHashVal).add(tempLine);
             }
         }
+        /* testing
         String temasd = "top";
         temp=temasd.toCharArray();
         Arrays.sort(temp);
@@ -187,6 +258,7 @@ public class Driver {
         {
             System.out.println(dictAnagrams.get(tempHashVal).get(test));
         }
+        */
 
 
         Scanner input = new Scanner(System.in);
