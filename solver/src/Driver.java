@@ -191,7 +191,7 @@ public class Driver {
             word=word.trim();
             wordsOnLine.add(word);
             /* if want more */
-            
+
            for(int j=0; j<wordsOnLine.size(); j++)
             {
                 if(!SolvePuzzle.words.containsKey(wordsOnLine.get(j).hashCode()))

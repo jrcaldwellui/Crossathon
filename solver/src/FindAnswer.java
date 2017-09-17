@@ -9,15 +9,21 @@ public class FindAnswer {
         String synToAdd="";
         if(clues.containsKey(clue.hashCode()))
         {
+            if(syns.containsKey(clue.hashCode())) {
+                for (int j = 0; j < syns.get(clue.hashCode()).getSynonyms().size(); j++) {
+                    synToAdd = syns.get(clue.hashCode()).getSynonyms().get(j);
+                    returnArray.add(synToAdd);
+
+                }
+            }
             for(int i=0; i<clues.get(clue.hashCode()).getAnswers().size(); i++) //ArrayList of Strings
             {
                 //add each syn for the String
                 if(syns.containsKey((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode())) {
                     for (int j = 0; j < syns.get((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode()).getSynonyms().size(); j++) {
                         synToAdd = syns.get((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode()).getSynonyms().get(j);
-                        if (!returnArray.contains(synToAdd)) {
-                            returnArray.add(synToAdd);
-                        }
+                        returnArray.add(synToAdd);
+
                     }
                 }
                 if(!returnArray.contains(clues.get(clue.hashCode()).getAnswers().get(i)))
