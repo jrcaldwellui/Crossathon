@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CrosswordNew</string>
+    <string name="new_puzzle_button">New Puzzle</string>
+    <string name="PhotoButton">Take Photo</string>
+</resources>
