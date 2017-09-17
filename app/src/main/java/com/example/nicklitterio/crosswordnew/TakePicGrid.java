@@ -14,6 +14,9 @@ import android.widget.ImageView;
 
 public class TakePicGrid extends AppCompatActivity {
 
+    static int count = 0;
+
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView grid;
 
@@ -29,6 +32,11 @@ public class TakePicGrid extends AppCompatActivity {
         if(!hasCamera()) {
             GridPicButton.setEnabled(false);
         }
+        // Don't show unless the camera was used
+        Button ContinueButton = (Button) findViewById(R.id.Continue);
+        if(count == 0) {
+            ContinueButton.setEnabled(false);
+        }
     }
 
     // True if user has camera
@@ -42,6 +50,9 @@ public class TakePicGrid extends AppCompatActivity {
 
         // Take pic and pass image to onActivityResult
         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+
+        // Shows that camera was used
+//        count++;
     }
 
     // Returns the taken image
@@ -54,4 +65,10 @@ public class TakePicGrid extends AppCompatActivity {
             grid.setImageBitmap(photo);
         }
     }
+
+    public void onClick(View view) {
+        Intent i = new Intent(this, TakePicColumn.class);
+        startActivity(i);
+    }
+
 }
