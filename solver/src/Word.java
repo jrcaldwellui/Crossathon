@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Word {
     private final String word;
@@ -12,16 +14,13 @@ public class Word {
     public ArrayList<String> getSynonyms() {
         return synonyms;
     }
-    public static String makeOneWord(String input)
+    public static ArrayList<String> anagram(String input, HashMap<Integer,ArrayList<String>> variations)
     {
-        String output="";
-        for(int i=0; i<input.length(); i++)
-        {
-            if((int)input.charAt(i)<=122 &&(int)input.charAt(i)>=97)
-            {
-                output=output+input.charAt(i);
-            }
-        }
+        char[] temp=input.toCharArray();
+        Arrays.sort(temp);
+        int tempHashVal = new String(temp).hashCode();
+        ArrayList<String> output = variations.get(tempHashVal);
+        output.remove(input);
         return output;
     }
 }
