@@ -1,3 +1,4 @@
 Crossword myCrossword = Crossword.ExampleCrossword();
 myCrossword.get(0,0);//returns character at row 0, col 0
-                      // * char means whitespace in puzzle 0 means black spacein puzzle
+                      // * char means whitespace in puzzle
+                      // 0 means black spacein puzzle
