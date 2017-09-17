@@ -1,23 +1,29 @@
-import java.lang.reflect.AnnotatedType;
+//import java.lang.reflect.AnnotatedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FindAnswer {
-    public static ArrayList<String> getAnswer(HashMap<Integer,Clue> clues, HashMap<Integer,Word> syns, String clue)
+    public static ArrayList<String> getAnswer(ArrayList<String> returnArray,HashMap<Integer,Clue> clues,
+                                              HashMap<Integer,Word> syns, String clue)
     {
-        ArrayList<String> returnArray = new ArrayList<>();
         String synToAdd="";
         if(clues.containsKey(clue.hashCode()))
         {
+            if(syns.containsKey(clue.hashCode())) {
+                for (int j = 0; j < syns.get(clue.hashCode()).getSynonyms().size(); j++) {
+                    synToAdd = syns.get(clue.hashCode()).getSynonyms().get(j);
+                    returnArray.add(synToAdd);
+
+                }
+            }
             for(int i=0; i<clues.get(clue.hashCode()).getAnswers().size(); i++) //ArrayList of Strings
             {
                 //add each syn for the String
                 if(syns.containsKey((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode())) {
                     for (int j = 0; j < syns.get((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode()).getSynonyms().size(); j++) {
                         synToAdd = syns.get((clues.get(clue.hashCode()).getAnswers().get(i)).hashCode()).getSynonyms().get(j);
-                        if (!returnArray.contains(synToAdd)) {
-                            returnArray.add(synToAdd);
-                        }
+                        returnArray.add(synToAdd);
+
                     }
                 }
                 if(!returnArray.contains(clues.get(clue.hashCode()).getAnswers().get(i)))
@@ -31,7 +37,7 @@ public class FindAnswer {
     public static ArrayList<String> narrowAnswerKnown(ArrayList<String> answers,String known)
     {
         ArrayList<String> narrowedDown;
-        narrowedDown=new ArrayList<String>(answers);
+        narrowedDown=answers;
         String tempString;
         for(int i=0; i<narrowedDown.size(); i++) {
             tempString = narrowedDown.get(i);
@@ -48,7 +54,7 @@ public class FindAnswer {
     public static ArrayList<String> narrowAnswerLen(ArrayList<String> answers,int desiredLength)
     {
         ArrayList<String> narrowedDown;
-        narrowedDown=new ArrayList<String>(answers);
+        narrowedDown=answers;
         String tempString;
         for(int i=0; i<narrowedDown.size(); i++)
         {

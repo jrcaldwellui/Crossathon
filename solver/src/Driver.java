@@ -9,7 +9,7 @@ public class Driver {
         //Thes from https://justenglish.me/2014/04/18/synonyms-for-the-96-most-commonly-used-words-in-english/
         //mobyThes from http://www.gutenberg.org/files/3202/
         //Dictionary from https://raw.githubusercontent.com/sujithps/Dictionary/master/Oxford%20English%20Dictionary.txt
-        URL path = Driver.class.getResource("dict.txt");
+        URL path = Driver.class.getResource("allClues.txt");
         FileReader file =  new FileReader(path.getFile());
         BufferedReader buffer = new BufferedReader(file);
 
@@ -59,6 +59,7 @@ public class Driver {
             }
             clue=clue.toLowerCase();
             clue=clue.trim();
+
             answer=answer.toLowerCase();
             answer=answer.trim();
 
@@ -189,6 +190,8 @@ public class Driver {
             }
             word=word.trim();
             wordsOnLine.add(word);
+            /* if want more */
+
            for(int j=0; j<wordsOnLine.size(); j++)
             {
                 if(!SolvePuzzle.words.containsKey(wordsOnLine.get(j).hashCode()))
@@ -196,6 +199,19 @@ public class Driver {
                     SolvePuzzle.words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
                 }
             }
+
+
+
+            /* or if want to limit */
+            /*
+            if(wordsOnLine.size()>1)
+            {
+                word = wordsOnLine.get(0);
+                wordsOnLine.remove(word);
+                SolvePuzzle.words.put(word.hashCode(), new Word(word, wordsOnLine));
+            }
+            */
+
             wordsOnLine.clear();
         }
 

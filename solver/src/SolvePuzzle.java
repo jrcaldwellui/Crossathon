@@ -21,14 +21,20 @@ public class SolvePuzzle {
     */
     public static String response(String clue,int len, String blanks)
     {
+        ArrayList<String> output = new ArrayList<>();
         if (blanks.length()<len)
         {
             return "";
         }
         clue = clue.trim();
         clue = clue.toLowerCase();
-
-        ArrayList<String> output = FindAnswer.getAnswer(SolvePuzzle.clues,SolvePuzzle.words, clue);
+        if(SolvePuzzle.clues.containsKey(clue.hashCode()))
+        {
+            for(int i=0; i<SolvePuzzle.clues.get(clue.hashCode()).getAnswers().size(); i++) {
+                output.add(0, SolvePuzzle.clues.get(clue.hashCode()).getAnswers().get(i));
+            }
+        }
+        output = FindAnswer.getAnswer(output,SolvePuzzle.clues,SolvePuzzle.words, clue);
         if(SolvePuzzle.words.containsKey(clue.hashCode()))
         {
             for(int i=0; i<SolvePuzzle.words.get(clue.hashCode()).getSynonyms().size(); i++)
