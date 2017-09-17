@@ -13,9 +13,9 @@ public class Crossword
 	public static Crossword ExampleCrossword()
 	{
 		ArrayList<Box> testBoxs = new ArrayList<Box>();
-		testBoxs.add(new Box(0,0));
-		testBoxs.add(new Box(1,1));
-		testBoxs.add(new Box(2,2));
+		//testBoxs.add(new Box(0,0));
+		//testBoxs.add(new Box(1,1));
+		//testBoxs.add(new Box(2,2));
 		testBoxs.add(new Box(0,2));
 		//testBoxs.add(new Box(2,0));
 		return new Crossword(testBoxs,3,3);
@@ -54,16 +54,16 @@ public class Crossword
 	// returns 0 then there is a black space at the given row col
 	public char get(int row, int col)
 	{
-		return crossword.get(col).get(row);
+		return crossword.get(numRows-1-row).get(numCols-1-col);
 	}
 	
 	//prints crossword to console
 	public void print()
 	{
-		System.out.println(numRows + " , " + numCols);
-		for(int col = 0; col < numCols; col++)
+		//System.out.println(numRows + " , " + numCols);
+		for(int row = 0; row < numRows; row++)
 		{
-			for(int row = 0; row < numRows; row++)
+			for(int col = 0; col < numCols; col++)
 			{ 
 				System.out.print( this.get(row,col) );
 			}
