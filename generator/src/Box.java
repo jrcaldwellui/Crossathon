@@ -1,0 +1,21 @@
+import org.opencv.core.Point;
+
+public class Box 
+{
+	public Point loc;
+	public int row;
+	public int col;
+	public double diffx = 0.0;
+	public double diffy = 0.0;
+
+	
+	public Box( Point point)
+	{
+		this.loc = point;
+	}
+	public Box(int row, int col)
+	{
+		this.row = row;
+		this.col = col;
+	}
+}
