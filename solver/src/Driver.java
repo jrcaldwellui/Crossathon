@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -12,7 +11,6 @@ public class Driver {
         URL path = Driver.class.getResource("allClues.txt");
         FileReader file =  new FileReader(path.getFile());
         BufferedReader buffer = new BufferedReader(file);
-       //BufferedWriter writer = new BufferedWriter(new FileWriter("allThes.txt"));
 
         String tempLine;
         String clue;
@@ -20,19 +18,16 @@ public class Driver {
         int tempVal;
         boolean foundAnswer;
         boolean foundClue;
-        HashMap<Integer,Clue> clues = new HashMap<>();
         int tempHashVal;
         Clue tempClue;
-        boolean blank = false;
 
-        //allClues.txt
+        //allClues.txt : stored as (clue) [answer]
         while ((tempLine = buffer.readLine())!=null)
         {
             foundAnswer=false;
             foundClue=false;
             answer="";
             clue="";
-           // tempLine = buffer.readLine();
             for(int j=0; j<tempLine.length(); j++)
             {
                 tempVal = (int)tempLine.charAt(j);
@@ -48,7 +43,6 @@ public class Driver {
                 {
                     clue=clue+tempLine.charAt(j);
                 }
-
                 if(tempVal==91) //[
                 {
                     foundAnswer=true;
@@ -61,7 +55,6 @@ public class Driver {
                 {
                     answer=answer+tempLine.charAt(j);
                 }
-
             }
             clue=clue.toLowerCase();
             clue=clue.trim();
@@ -73,104 +66,91 @@ public class Driver {
             {
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
                 clue = clue.replace("_","__");
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
-
                 clue = clue.replace("__","___");
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
-
                 clue = clue.replace("___","___ ");
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
-
                 clue = clue.replace("___ ","__ ");
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
-
                 clue = clue.replace("__ ","_ ");
                 tempClue = new Clue(clue);
                 tempClue.addAnswer(answer);
-                if (clues.containsKey(clue.hashCode()))
+                if (SolvePuzzle.clues.containsKey(clue.hashCode()))
                 {
-                    clues.get(clue.hashCode()).addAnswer(answer);
+                    SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
                 }
                 else {
-                    clues.put(clue.hashCode(), tempClue);
+                    SolvePuzzle.clues.put(clue.hashCode(), tempClue);
                 }
-
             }
-
              //adds clue and answer to hash
             tempClue = new Clue(clue);
             tempClue.addAnswer(answer);
-            if (clues.containsKey(clue.hashCode()))
+            if (SolvePuzzle.clues.containsKey(clue.hashCode()))
             {
-                clues.get(clue.hashCode()).addAnswer(answer);
+                SolvePuzzle.clues.get(clue.hashCode()).addAnswer(answer);
             }
             else {
-                clues.put(clue.hashCode(), tempClue);
+                SolvePuzzle.clues.put(clue.hashCode(), tempClue);
             }
         }
 
-        //read in common thesaurus
-       // path = Driver.class.getResource("commonThes.txt");
+        //read in thesaurus
         path = Driver.class.getResource("mobyThes.txt");
         file =  new FileReader(path.getFile());
         buffer = new BufferedReader(file);
-        HashMap<Integer,Word> words = new HashMap<>();
-        boolean onWord=false;
+        boolean onWord;
         String word="";
         ArrayList<String> wordsOnLine = new ArrayList<>();
-        int count=0;
 
-
-        //allThes.txt
+        //allThes.txt :stored as syn,syn,syn ... per line
         while ((tempLine = buffer.readLine())!=null)
-        //for(int i=0; i<5; i++)
         {
-            //tempLine=buffer.readLine();
             tempLine=tempLine.toLowerCase();
             tempLine=tempLine.trim();
             word="";
             onWord=false;
-            //tempLine=buffer.readLine();
             tempLine=tempLine.toLowerCase();
             tempLine=tempLine.trim();
             for(int j=0; j<tempLine.length(); j++)
@@ -181,7 +161,6 @@ public class Driver {
                     if(onWord)
                     {
                         word=word.trim();
-                        //word=Word.makeOneWord(word);
                         wordsOnLine.add(word);
                     }
                     onWord=false;
@@ -197,138 +176,55 @@ public class Driver {
                 }
             }
             word=word.trim();
-            //word=Word.makeOneWord(word);
             wordsOnLine.add(word);
            for(int j=0; j<wordsOnLine.size(); j++)
             {
-                if(!words.containsKey(wordsOnLine.get(j).hashCode()))
+                if(!SolvePuzzle.words.containsKey(wordsOnLine.get(j).hashCode()))
                 {
-                    words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
+                    SolvePuzzle.words.put(wordsOnLine.get(j).hashCode(), new Word(wordsOnLine.get(j), wordsOnLine));
                 }
-                //System.out.println(wordsOnLine.get(j));
             }
-            //count++;
             wordsOnLine.clear();
         }
-        //System.out.println(count);
-        /*
-        String tesads= "radical";
-       System.out.println(words.containsKey(tesads.hashCode()));
-       for(int test=0; test<words.get(tesads.hashCode()).getSynonyms().size(); test++)
-       {
-           System.out.print(", " + words.get(tesads.hashCode()).getSynonyms().get(test));
-       }
-       */
-
 
         //Ability to do anagrams
         path = Driver.class.getResource("dict.txt");
         file =  new FileReader(path.getFile());
         buffer = new BufferedReader(file);
-        HashMap<Integer,ArrayList<String>> dictAnagrams = new HashMap<>();
         char[] temp;
-       // ArrayList<String> temp = new ArrayList<>()
-        //read dict.txt
+
+        //read in dict.txt file : one word per line
         while ((tempLine = buffer.readLine())!=null)
         {
-            //tempLine=buffer.readLine();
-            //tempHashVal = tempLine.hashCode();
             temp=tempLine.toCharArray();
             Arrays.sort(temp);
             tempHashVal = new String(temp).hashCode();
-            if(dictAnagrams.containsKey(tempHashVal))
+            if(SolvePuzzle.dictAnagrams.containsKey(tempHashVal))
             {
-               // Arrays.sort(temp);
-                dictAnagrams.get(tempHashVal).add(tempLine);
+                SolvePuzzle.dictAnagrams.get(tempHashVal).add(tempLine);
             }
             else
             {
-                dictAnagrams.put(tempHashVal,new ArrayList<>());
-                //Arrays.sort(temp);
-                dictAnagrams.get(tempHashVal).add(tempLine);
+                SolvePuzzle.dictAnagrams.put(tempHashVal,new ArrayList<>());
+                SolvePuzzle.dictAnagrams.get(tempHashVal).add(tempLine);
             }
         }
-        /* testing
-        String temasd = "top";
-        temp=temasd.toCharArray();
-        Arrays.sort(temp);
-        tempHashVal = new String(temp).hashCode();
-        System.out.println(dictAnagrams.containsKey(tempHashVal));
-        for(int test =0; test<dictAnagrams.get(tempHashVal).size(); test++)
-        {
-            System.out.println(dictAnagrams.get(tempHashVal).get(test));
-        }
-        */
 
-
+        //Temporary user input that will be changed later
+        //just need to call SolvePuzzle.response after running driver to get the answer
         Scanner input = new Scanner(System.in);
         String clueStr = "";
         int len;
         String like;
+
         while(!clueStr.equals("-1")) {
             System.out.println("Enter the clue:");
             clueStr = input.nextLine();
-            clueStr = clueStr.trim();
-            clueStr = clueStr.toLowerCase();
-            //System.out.println(tempStr);
-            ArrayList<String> output = FindAnswer.getAnswer(clues,words, clueStr);
-            if(words.containsKey(clueStr.hashCode()))
-            {
-                for(int i=0; i<words.get(clueStr.hashCode()).getSynonyms().size(); i++)
-                {
-                    if(!output.contains(words.get(clueStr.hashCode()).getSynonyms().get(i)))
-                    {
-                        output.add(words.get(clueStr.hashCode()).getSynonyms().get(i));
-                    }
-                }
-            }
-            ArrayList<String> anagrams;
-            if(clueStr.contains("anagram of "))
-            {
-                anagrams = Word.anagram(clueStr.substring(clueStr.indexOf("anagram of ") + 11,clueStr.length()),dictAnagrams);
-                for(int i=0; i<anagrams.size(); i++)
-                {
-                    output.add(anagrams.get(i));
-                }
-            }
-            else if(clueStr.contains("unscramble "))
-            {
-                anagrams = Word.anagram(clueStr.substring(clueStr.indexOf("unscramble ")+11,clueStr.length()),dictAnagrams);
-                for(int i=0; i<anagrams.size(); i++)
-                {
-                    output.add(anagrams.get(i));
-                }
-            }
-            if (output != null )
-            {
-                for (int i = 0; i < output.size(); i++) {
-                    System.out.println(output.get(i));
-                }
-
-                System.out.println("Enter the len:");
-                len = input.nextInt();
-                output = FindAnswer.narrowAnswerLen(output,len);
-                if (output != null) {
-                    for (int i = 0; i < output.size(); i++) {
-                        System.out.println(output.get(i));
-                    }
-                } else {
-                    System.out.println("Invalid clue");
-                }
-                System.out.println("Enter the blanks:");
-                like=input.next();
-                output = FindAnswer.narrowAnswerKnown(output,like);
-                if (output != null) {
-                    for (int i = 0; i < output.size(); i++) {
-                        System.out.println(output.get(i));
-                    }
-                } else {
-                    System.out.println("Invalid clue");
-                }
-            }
-            else {
-                System.out.println("Invalid clue");
-            }
+            System.out.println("Enter the len:");
+            len = input.nextInt();
+            System.out.println("Enter the blanks:");
+            like=input.next();
+            System.out.println(SolvePuzzle.response(clueStr,len,like));
             input.nextLine();
         }
     }
