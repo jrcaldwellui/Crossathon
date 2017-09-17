@@ -76,22 +76,8 @@ public class CVDetect {
 	        	}
 	        }
 	        
-	        //Calculate the center point of each contour
-	        for (MatOfPoint contour : crossword_contours) 
-	        {
-	        	Point center = calcCenter(contour);
-	        	Imgproc.circle(img, center, 10, new Scalar(255,0,0));
-	        	System.out.println(calcCenter(contour).toString());
-	        }
 	        
-	        //determine number of rows
-	        //number of cols
-	        //2D array of chars either * or null if empty
-	        
-	        //sort by x, if number inc by more than 10 percent end range 
-	        //array of y ranges array of x ranges
-	        
-	        //xxxxxXXXXX
+	        //Determine Rows for each box in puzzle
 	        ArrayList<Box> boxs = new ArrayList<Box>();
 	        for (MatOfPoint contour : crossword_contours)
 	        {
@@ -104,30 +90,14 @@ public class CVDetect {
 	            	return (int)(Math.signum(box1.loc.x - box2.loc.x) * Math.ceil(Math.abs(box1.loc.x - box2.loc.x)));
 	            }
 	         });
-	        
-	        
-	        //sort contours by area
-	        /*Collections.sort(crossword_contours,new Comparator<MatOfPoint>() {
-	            @Override
-	            public int compare(MatOfPoint contour2, MatOfPoint contour1)
-	            {
-	            	Point center1 = calcCenter(contour1);
-	            	Point center2 = calcCenter(contour2);
-	            	return (int)(Math.signum(center1.x - center2.x) * Math.ceil(Math.abs(center1.x - center2.x)));
-	            }
-	         });*/
+	       
 	        ArrayList<Double> diffs = new ArrayList<Double>();
 	        for (int i = 1; i < boxs.size(); i++) 
 	        {
-	        	boxs.get(i).diffx = boxs.get(i).loc.x - boxs.get(i-1).loc.x; 
+	        	boxs.get(i-1).diffx = boxs.get(i).loc.x - boxs.get(i-1).loc.x; 
 	        	diffs.add( boxs.get(i).loc.x - boxs.get(i-1).loc.x );
 	        }
 	        Collections.sort(diffs);
-	        for(Double n : diffs)
-	        {
-	        	System.out.println(n);
-	        }
-	        System.out.print('\n');
 	        int colChange = findSignificantXChange(diffs);
 	        double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
 	        ArrayList<Integer> locationOf = new ArrayList<Integer>();
@@ -141,6 +111,7 @@ public class CVDetect {
 	        	}
 	        }
 	        
+	        //Determine cols for each box in puzzle
 	        Collections.sort(boxs,new Comparator<Box>() {
 	            @Override
 	            public int compare(Box box2, Box box1)
@@ -150,15 +121,11 @@ public class CVDetect {
 	         });
 	        for (int i = 1; i < boxs.size(); i++) 
 	        {
-	        	boxs.get(i).diffy = boxs.get(i).loc.y - boxs.get(i-1).loc.y; 
+	        	boxs.get(i-1).diffy = boxs.get(i).loc.y - boxs.get(i-1).loc.y; 
 	        	diffs.add( boxs.get(i).loc.y - boxs.get(i-1).loc.y );
 	        }
 	        Collections.sort(diffs);
-	        for(Double n : diffs)
-	        {
-	        	System.out.println(n);
-	        }
-	        System.out.print('\n');
+
 	        int rowChange = findSignificantXChange(diffs);
 	        double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
 	        int col = 0;
@@ -170,13 +137,8 @@ public class CVDetect {
 	        		col++;
 	        	}
 	        }
-	    
-	        for (Box box : boxs) 
-	        {
-	        	System.out.println( "{ " + box.row + ", "+box.col+ "}");
-	        }
-	        System.out.println(boxs.size());
-	        
+	 
+	        //make puzzle
 	        Crossword myCrossword = new Crossword(boxs,row+1,col+1);
 	        myCrossword.print();
 	        
@@ -184,6 +146,13 @@ public class CVDetect {
 
 
 	        
+	        
+	        //Calculate the center point of each contour for display
+	        for (MatOfPoint contour : crossword_contours) 
+	        {
+	        	Point center = calcCenter(contour);
+	        	Imgproc.circle(img, center, 10, new Scalar(255,0,0));
+	        }
 	        
 	        
 	       /* System.out.println(contours.size());
@@ -196,7 +165,7 @@ public class CVDetect {
 	        Imgproc.resize(img, smallImg, new Size(1000,750));
 	        DispImg(smallImg,"contours");
 	        
-		
+	        System.out.println(myCrossword.get(2,10));
 		        
 	}
 	
