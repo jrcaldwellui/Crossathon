@@ -10,39 +10,57 @@
         android:id="@+id/imageHints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:contentDescription="Column Picture"
         android:minHeight="300dp"
         android:minWidth="300dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="47dp"
-        tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/columnPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:text="Take Photo"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="449dp" />
+        android:layout_marginBottom="127dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:onClick="launchCamera"
+        android:text="@string/PhotoButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SOLVE!"
-        tools:layout_editor_absoluteX="252dp"
-        tools:layout_editor_absoluteY="449dp" />
+        android:id="@+id/Solve"
+        android:layout_width="105dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/solvePage"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="@+id/columnPic"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/columnPic"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Take a picture of the hints."
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="415dp" />
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="28dp"
+        android:text="Take a picture of a column of the hints."
+        app:layout_constraintBottom_toTopOf="@+id/columnPic"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/Solve"
+        android:layout_marginRight="28dp" />
 </android.support.constraint.ConstraintLayout>
