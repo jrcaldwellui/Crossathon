@@ -60,7 +60,7 @@ public class CVDetect {
 	        
 	        
 	        //remove very large and very small contours
-	        int middle = rect_contours.size()/2; //downcast 
+	        int middle = rect_contours.size()/2; 
 	        double medianArea = Imgproc.contourArea(rect_contours.get(middle));
 	        double upperBound = medianArea + medianArea * 0.6; 
 	        double lowerBound = medianArea - medianArea * 0.6; 
@@ -100,13 +100,16 @@ public class CVDetect {
 	        Collections.sort(diffs);
 	        int colChange = findSignificantXChange(diffs);
 	        double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
+	        System.out.println(rowWidth);
 	        ArrayList<Integer> locationOf = new ArrayList<Integer>();
 	        int row = 0;
+	        System.out.println(boxs.size());
 	        for (Box box : boxs) 
 	        {
 	        	box.row = row;
 	        	if(Math.abs(box.diffx) > rowWidth)
 	        	{
+	        		
 	        		row++;
 	        	}
 	        }
@@ -129,6 +132,7 @@ public class CVDetect {
 	        int rowChange = findSignificantXChange(diffs);
 	        double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
 	        int col = 0;
+	        System.out.println(boxs.size());
 	        for (Box box : boxs) 
 	        {
 	        	box.col = col;
@@ -141,9 +145,10 @@ public class CVDetect {
 	        //make puzzle
 	        Crossword myCrossword = new Crossword(boxs,row+1,col+1);
 	        myCrossword.print();
-	        
-	      
-
+	        myCrossword.calculateBoxNumbers();
+	        myCrossword.printNumbers();
+	        System.out.println("1: " + myCrossword.getWordLengthAcross(40));
+	     	
 
 	        
 	        
@@ -155,6 +160,7 @@ public class CVDetect {
 	        }
 	        
 	        
+	        //Debug img processing
 	       /* System.out.println(contours.size());
 	        DispImg(img,"OG");
 	        DispImg(gImg,"Grey");
@@ -165,7 +171,6 @@ public class CVDetect {
 	        Imgproc.resize(img, smallImg, new Size(1000,750));
 	        DispImg(smallImg,"contours");
 	        
-	        System.out.println(myCrossword.get(2,10));
 		        
 	}
 	
@@ -177,7 +182,11 @@ public class CVDetect {
         	double currentPoint = Math.abs(nums.get(i));
         	double nextPoint = Math.abs(nums.get(i-1));
 
-        	if( nextPoint - currentPoint > lastPoint + currentPoint )
+        	/*if( nextPoint - currentPoint > lastPoint + currentPoint )
+        	{
+        		return i-1;
+        	}*/
+        	if(nextPoint > 10*currentPoint)
         	{
         		return i-1;
         	}
