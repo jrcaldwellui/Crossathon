@@ -26,8 +26,6 @@ public class Crossword
 				}
 			}
 		}
-		System.out.println("size" + numbers.get(0).get(0));
-		this.printNumbers();
 		
 		int count = 1;
 		for(int row = 0; row < numRows; row++)
@@ -49,7 +47,6 @@ public class Crossword
 				}
 				
 			}
-			System.out.print("\n");
 		}
 	}
 	
@@ -77,11 +74,8 @@ public class Crossword
 				crossword.get(col).add('0');
 			}
 		}
-		System.out.println("rows: " + this.numRows + "cols: " + this.numCols);
-		this.print();
 		for(Box box: boxs)
 		{
-			System.out.println(box.row + "," + box.col);
 			this.set((int)box.row, (int)box.col, '1');
 		}
 		
