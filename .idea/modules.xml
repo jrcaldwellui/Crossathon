@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CrosswordNew.iml" filepath="$PROJECT_DIR$/CrosswordNew.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hackuiowa.iml" filepath="$PROJECT_DIR$/hackuiowa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hackuiowa4.iml" filepath="$PROJECT_DIR$/.idea/hackuiowa4.iml" />
     </modules>

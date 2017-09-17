@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 public class TakePicGrid extends AppCompatActivity {
 
-    static int count = 0;
+//    static int count = 0;
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView grid;
@@ -34,9 +34,9 @@ public class TakePicGrid extends AppCompatActivity {
         }
         // Don't show unless the camera was used
         ContinueButton = (Button) findViewById(R.id.Continue);
-        if (count == 0) {
-            ContinueButton.setEnabled(false);
-        }
+//        if (count == 0) {
+//            ContinueButton.setEnabled(false);
+//        }
     }
 
     // True if user has camera
@@ -53,7 +53,7 @@ public class TakePicGrid extends AppCompatActivity {
 
         // Shows that camera was used
         ContinueButton = (Button) findViewById(R.id.Continue);
-        ContinueButton.setEnabled(true);
+//        ContinueButton.setEnabled(true);
 
 
     }

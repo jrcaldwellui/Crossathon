@@ -14,11 +14,32 @@ import android.widget.ImageView;
 
 public class TakePicColumn extends AppCompatActivity {
 
-    static int count = 0;
+//    static int count = 0;
 
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView column;
+    Button ContinueButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_take_pic_column);
+
+        Button ColumnPicButton = (Button) findViewById(R.id.columnPic);
+        column = (ImageView) findViewById(R.id.imageHints);
+
+// Disables button if no camera
+        if(!hasCamera()) {
+            ColumnPicButton.setEnabled(false);
+        }
+// Don't show unless the camera was used
+//        ContinueButton = (Button) findViewById(R.id.Continue);
+//        if(count == 0) {
+//            ContinueButton.setEnabled(false);
+//        }
+
+    }
 
     // True if user has camera
     private boolean hasCamera() {
@@ -34,7 +55,7 @@ public class TakePicColumn extends AppCompatActivity {
 
         // Shows that camera was used
         Button SolveButton = (Button) findViewById(R.id.Solve);
-        SolveButton.setEnabled(true);
+//        SolveButton.setEnabled(true);
 
 
     }
@@ -55,23 +76,5 @@ public class TakePicColumn extends AppCompatActivity {
         startActivity(i);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_take_pic_column);
 
-        Button ColumnPicButton = (Button) findViewById(R.id.columnPic);
-        column = (ImageView) findViewById(R.id.imageHints);
-
-// Disables button if no camera
-        if(!hasCamera()) {
-            ColumnPicButton.setEnabled(false);
-        }
-// Don't show unless the camera was used
-        Button ContinueButton = (Button) findViewById(R.id.Continue);
-        if(count == 0) {
-            ContinueButton.setEnabled(false);
-        }
-
-    }
 }
