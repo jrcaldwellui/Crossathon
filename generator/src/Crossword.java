@@ -1,3 +1,4 @@
+package gen;
 import java.util.ArrayList;
 
 import org.opencv.core.Point;
@@ -6,6 +7,8 @@ import org.opencv.core.Size;
 public class Crossword
 {
 	private ArrayList<ArrayList<Character>> crossword = new ArrayList<ArrayList<Character>>();
+	private boolean crossword1[][];
+	private int boxNumbers[][];
 	private ArrayList<ArrayList<Integer>> numbers = new ArrayList<ArrayList<Integer>>();
 	private int numRows;
 	private int numCols;
@@ -32,14 +35,14 @@ public class Crossword
 		{
 			for(int col = 0; col < numCols; col++)
 			{ 
-				char current = this.get(row,col);
-				if(current == '1' )
+				boolean current = this.get(row,col);
+				if(current == true )
 				{
 					if(row == 0 || col == 0)
 					{
 						numbers.get(col).set(row, count);
 						count++;
-					}else if(this.get(row - 1,col) == '0' || this.get(row,col - 1) == '0')
+					}else if(this.get(row - 1,col) == false || this.get(row,col - 1) == false)
 					{
 						numbers.get(col).set(row, count);
 						count++;
@@ -62,22 +65,25 @@ public class Crossword
 		return new Crossword(testBoxs,3,3);
 	}
 	
+	//
 	public Crossword(ArrayList<Box> boxs,int numRows,int numCols)
 	{
+		crossword1 = new boolean[numRows][numCols];
+		
 		this.numCols = numCols;
 		this.numRows = numRows;
-		for(int col = 0; col < numCols; col++)
-		{
-			crossword.add(new ArrayList<Character>());
-			for(int row = 0; row < numRows; row++)
-			{
-				crossword.get(col).add('0');
-			}
-		}
+		
 		for(Box box: boxs)
 		{
-			this.set((int)box.row, (int)box.col, '1');
+			crossword1[box.row][box.col] = true;
 		}
+		
+		for(int i = 0; i < numCols;i++)
+		{
+			System.out.print(crossword1[numRows-1][i]);
+		}
+		System.out.println("---------------");
+		
 		
 	}
 	
@@ -91,9 +97,10 @@ public class Crossword
 	//get the char at row,col
 	// returns * then there is a white entry box at the given row col
 	// returns 0 then there is a black space at the given row col
-	public char get(int row, int col)
+	public boolean get(int row, int col)
 	{
-		return crossword.get(numRows-1-row).get(numCols-1-col);
+		//return crossword.get(numRows-1-row).get(numCols-1-col);
+		return crossword1[row][col];
 	}
 	
 	//prints crossword to console
@@ -104,7 +111,14 @@ public class Crossword
 		{
 			for(int col = 0; col < numCols; col++)
 			{ 
-				System.out.print( this.get(row,col) );
+				 if(this.get(row,col))
+				 {
+					 System.out.print("0");
+				 }
+				 else
+				 {
+					 System.out.print("X");
+				 }
 			}
 			System.out.print("\n");
 		}
@@ -158,7 +172,7 @@ public class Crossword
 			int length = 1;
 			for(int col = loc.col + 1; col < numCols; col++)
 			{
-				if(this.get(loc.row,col) == '0')
+				if(this.get(loc.row,col) == false)
 				{
 					return length;
 				}
@@ -179,7 +193,7 @@ public class Crossword
 			int length = 1;
 			for(int row = loc.row + 1; row < numRows; row++)
 			{
-				if(this.get(row,loc.col) == '0')
+				if(this.get(row,loc.col) == false)
 				{
 					return length;
 				}

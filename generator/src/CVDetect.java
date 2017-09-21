@@ -1,3 +1,4 @@
+package gen;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
@@ -9,31 +10,36 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+//import org.opencv.core.Core.line;
 import org.opencv.core.*;
-import org.opencv.core.*;
+
 import org.opencv.videoio.VideoCapture;   // VideoCapture
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
+import reader.Reader;
+
 
 public class CVDetect {
-	    public static Crossword genCrossword(String imgPath) {
+	    public static Crossword genCrossword(String imgPath, int sizeWindow) {
 	    	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-	    	
-	        Mat gImg = new Mat();
-	        Mat threshImg = new Mat();
+
+	    	Mat greyImg = new Mat();
 	        Mat blurImg = new Mat();
+	        Mat threshImg = new Mat();
+	        Mat heir = new Mat();  
+	        Mat hughOut = new Mat();  
 	        
-	        //Get contours of image (basically grabs a list of shape outlines)
+	        
 	        Mat img = Imgcodecs.imread(imgPath);
-	        Imgproc.cvtColor(img,gImg,Imgproc.COLOR_BGR2GRAY);
-	        Imgproc.GaussianBlur(gImg, blurImg, new Size(15,15), 0);
-	        Imgproc.adaptiveThreshold(blurImg, threshImg, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, 199, 7);
-	        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();
-	        Mat heir = new Mat();
+	        Imgproc.cvtColor(img,greyImg,Imgproc.COLOR_BGR2GRAY);
+	        Imgproc.GaussianBlur(greyImg, blurImg, new Size(sizeWindow,sizeWindow),0);
+	        Imgproc.adaptiveThreshold(blurImg, threshImg, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, 135, 10);
+	        
+	        List<MatOfPoint> contours = new ArrayList<MatOfPoint>();         
 	        Imgproc.findContours(threshImg, contours, heir, Imgproc.RETR_LIST , Imgproc.CHAIN_APPROX_SIMPLE );
-	       
+	        
 	        
 	        //Only keep contours that are approximately quadrilaterals
 	        List<MatOfPoint> rect_contours = new ArrayList<MatOfPoint>();
@@ -41,9 +47,7 @@ public class CVDetect {
 	        {
 	        	if( isContourQuadrilateral(contour) )
 	        	{
-	        		MatOfPoint temp = new MatOfPoint();
-	        		contour.copyTo(temp);
-	        		rect_contours.add(temp);
+	        		rect_contours.add(contour);
 	        	}
 	        }
 	        
@@ -57,148 +61,65 @@ public class CVDetect {
 	            	return (int)(Math.signum(area1 - area2) * Math.ceil(Math.abs(area1 - area2)));
 	            }
 	         });
-	        
-	        
-	        //remove very large and very small contours
+	        	       
+        	        
+	        //remove contours with very large and very small areas 
 	        int middle = rect_contours.size()/2; 
 	        double medianArea = Imgproc.contourArea(rect_contours.get(middle));
-	        double upperBound = medianArea + medianArea * 0.6; 
-	        double lowerBound = medianArea - medianArea * 0.6; 
+	        double upperBound = medianArea + medianArea * 0.3; 
+	        double lowerBound = medianArea - medianArea * 0.3; 
 	        List<MatOfPoint> crossword_contours = new ArrayList<MatOfPoint>();
-	        for (MatOfPoint contour : rect_contours)
+	        for (MatOfPoint contour : contours)
 	        {
 	        	double area = Imgproc.contourArea(contour);
 	        	if(area >= lowerBound && area <= upperBound)
 	        	{
-	        		MatOfPoint temp = new MatOfPoint();
-	        		contour.copyTo(temp);
-	        		crossword_contours.add(temp);
+	        		crossword_contours.add(contour);
 	        	}
 	        }
 	        
-	        
-	        //Determine Rows for each box in puzzle
+	        //Debug img processing
+	       /* DispImg(blurImg,"blur",new Size(1000,750));
+	        DispContourOnImg(img,contours,true,"original contours",new Size(1000,750));
+	        DispContourOnImg(img,rect_contours,true,"quad contours",new Size(1000,750));
+	        */DispContourOnImg(img,crossword_contours,true,"final contours",new Size(800,600));
+	       
+	        //Create list of data about crossword boxes
 	        ArrayList<Box> boxs = new ArrayList<Box>();
 	        for (MatOfPoint contour : crossword_contours)
 	        {
 	        	boxs.add(new Box(calcCenter(contour)));
 	        }
-	        Collections.sort(boxs,new Comparator<Box>() {
-	            @Override
-	            public int compare(Box box2, Box box1)
-	            {
-	            	return (int)(Math.signum(box1.loc.x - box2.loc.x) * Math.ceil(Math.abs(box1.loc.x - box2.loc.x)));
-	            }
-	         });
+	        int numRows = calcRows(boxs);
+	        int numCols = calcCols(boxs);	
 	        
-	     
-	       
-	        ArrayList<Double> diffs = new ArrayList<Double>();
-	        for (int i = 1; i < boxs.size(); i++) 
-	        {
-	        	boxs.get(i-1).diffx = boxs.get(i).loc.x - boxs.get(i-1).loc.x; 
-	        	diffs.add( boxs.get(i).loc.x - boxs.get(i-1).loc.x );
-	        }
-	        Collections.sort(diffs);
-	        int colChange = findSignificantXChange(diffs);
-	        double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
-	        ArrayList<Integer> locationOf = new ArrayList<Integer>();
-	        int row = 0;
-	        for (Box box : boxs) 
-	        {
-	        	box.row = row;
-	        	if(Math.abs(box.diffx) > rowWidth)
-	        	{
-	        		
-	        		row++;
-	        	}
-	        }
-	        
-	        //Determine cols for each box in puzzle
-	        Collections.sort(boxs,new Comparator<Box>() {
-	            @Override
-	            public int compare(Box box2, Box box1)
-	            {
-	            	return (int)(Math.signum(box1.loc.y - box2.loc.y) * Math.ceil(Math.abs(box1.loc.y - box2.loc.y)));
-	            }
-	         });
-	        for (int i = 1; i < boxs.size(); i++) 
-	        {
-	        	boxs.get(i-1).diffy = boxs.get(i).loc.y - boxs.get(i-1).loc.y; 
-	        	diffs.add( boxs.get(i).loc.y - boxs.get(i-1).loc.y );
-	        }
-	        Collections.sort(diffs);
-	        int rowChange = findSignificantXChange(diffs);
-	        double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
-	        int col = 0;
-	        for (Box box : boxs) 
-	        {
-	        	box.col = col;
-	        	if(Math.abs(box.diffy) > colWidth)
-	        	{
-	        		col++;
-	        	}
-	        }
-	 
-	        //make puzzle
-	        Crossword myCrossword = new Crossword(boxs,row+1,col+1);
+	        Crossword myCrossword = new Crossword(boxs,numRows,numCols);
 	        myCrossword.calculateBoxNumbers();
-	        
-	     	//return myCrossword;
-
-	        
-	        
-	        //Calculate the center point of each contour for display
-	        for (MatOfPoint contour : crossword_contours) 
-	        {
-	        	Point center = calcCenter(contour);
-	        	Imgproc.circle(img, center, 10, new Scalar(255,0,0));
-	        }
-	        
-	        
-	        
-	        //Debug img processing
-	       
-	        //DispImg(img,"OG");
-	        //DispImg(gImg,"Grey");
-	        //DispImg(blurImg,"Blur");
-	        //DispImg(threshImg,"thresh");
-	        Imgproc.drawContours(img, crossword_contours, -1, new Scalar(0,255,0),5);
-	        Mat smallImg = new Mat();
-	        Imgproc.resize(img, smallImg, new Size(1000,750));
-	        DispImg(smallImg,"contours");
-	        myCrossword.print();
 	        return myCrossword;
 		        
 	}
 	
+	    
+	/*
+	 * 
+	 */
 	public static int findSignificantXChange( ArrayList<Double> nums)
 	{
-        for(int i = nums.size()-2  ; i > 1; i--)
-        {
-        	double lastPoint = Math.abs( nums.get(i+1));
-        	double currentPoint = Math.abs(nums.get(i));
-        	double nextPoint = Math.abs(nums.get(i-1));
-
-
-        	if(nextPoint > 10*currentPoint)
-        	{
-        		return i-1;
-        	}
-        	
-        }
-        for(int i = nums.size()-2  ; i > 1; i--)
-        {
-        	double lastPoint = Math.abs( nums.get(i+1));
-        	double currentPoint = Math.abs(nums.get(i));
-        	double nextPoint = Math.abs(nums.get(i-1));
-
-        	if( nextPoint - currentPoint > lastPoint + currentPoint )
-        	{
-        		return i-1;
-        	}
-        	
-        }
+		int sum = 0;
+		for(double num: nums)
+		{
+			sum += num;
+		}
+		double mean = sum / nums.size();
+		
+		for(int i = 0; i < nums.size(); i++)
+		{
+			if( nums.get(i) > mean)
+			{
+				return i;
+			}
+		}
+  
         return -1;
 	}
 
@@ -225,6 +146,80 @@ public class CVDetect {
 			return false;
 		}
 	}
+	
+	public static int calcRows(ArrayList<Box> boxs)
+	{
+		Collections.sort(boxs,new Comparator<Box>() {
+            @Override
+            public int compare(Box box2, Box box1)
+            {
+            	return -1 * (int)(Math.signum(box1.loc.x - box2.loc.x) * Math.ceil(Math.abs(box1.loc.x - box2.loc.x)));
+            }
+         });
+        
+     
+       
+        ArrayList<Double> diffs = new ArrayList<Double>();
+        for (int i = 1; i < boxs.size(); i++) 
+        {
+        	boxs.get(i-1).diffx = boxs.get(i).loc.x - boxs.get(i-1).loc.x; 
+        	diffs.add(Math.abs( boxs.get(i).loc.x - boxs.get(i-1).loc.x) );
+        }
+        Collections.sort(diffs);
+        double sum = 0;
+		for( Double dif: diffs)
+		{
+			sum += dif;
+		} 
+        
+        int colChange = findSignificantXChange(diffs);
+        
+        double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
+        ArrayList<Integer> locationOf = new ArrayList<Integer>();
+        int row = 0;
+        
+        for (Box box : boxs) 
+        {
+        	box.col = row;
+        	if(Math.abs(box.diffx) > rowWidth)
+        	{
+        		
+        		row++;
+        	}
+        }
+        return row + 1;
+	}
+	
+	public static int calcCols(ArrayList<Box> boxs)
+	{
+		ArrayList<Double> diffs = new ArrayList<Double>();
+        //Determine cols for each box in puzzle
+        Collections.sort(boxs,new Comparator<Box>() {
+            @Override
+            public int compare(Box box2, Box box1)
+            {
+            	return  -1*(int)(Math.signum(box1.loc.y - box2.loc.y) * Math.ceil(Math.abs(box1.loc.y - box2.loc.y)));
+            }
+         });
+        for (int i = 1; i < boxs.size(); i++) 
+        {
+        	boxs.get(i-1).diffy =  Math.abs(boxs.get(i).loc.y - boxs.get(i-1).loc.y); 
+        	diffs.add( Math.abs( boxs.get(i).loc.y - boxs.get(i-1).loc.y ));
+        }
+        Collections.sort(diffs);
+        int rowChange = findSignificantXChange(diffs);
+        double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
+        int col = 0;
+        for (Box box : boxs) 
+        {
+        	box.row = col;
+        	if(Math.abs(box.diffy) > colWidth)
+        	{
+        		col++;
+        	}
+        }
+        return col + 1;
+	}
 	    
 	public static Point calcCenter(MatOfPoint contour){
 		Moments m = Imgproc.moments(contour);
@@ -232,6 +227,19 @@ public class CVDetect {
 		double y = m.get_m01() / m.get_m00();
 		return new Point(x,y);
 		
+	}
+	
+	public static double Mean( Mat m)
+	{
+        double sum = 0;
+        for(int i = 0; i < m.height(); i++)
+        {
+        	for(int j = 0; j < m.width(); j++)
+        	{
+        		sum += m.get(i,j)[0];
+        	}
+        }
+        return sum / ( m.width() * m.height());
 	}
 	
 	//Displays OpenCV mat img on screen title is window label
@@ -245,6 +253,38 @@ public class CVDetect {
         ImageIcon disp_image = new ImageIcon(Mat2BufferedImage(img));
         vidPanel.setIcon(disp_image);
         vidPanel.repaint();
+	}	
+	
+	//Displays OpenCV mat img on screen title is window label
+	public static void DispImg(Mat img,String title,Size sz){
+        JFrame jframe = new JFrame(title);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel vidPanel = new JLabel();
+        jframe.setContentPane(vidPanel);
+        Mat resizedImg = new Mat();
+        Imgproc.resize(img, resizedImg, sz);
+        jframe.setSize( resizedImg.cols(),resizedImg.rows());
+        jframe.setVisible(true);
+        ImageIcon disp_image = new ImageIcon(Mat2BufferedImage(resizedImg));
+        vidPanel.setIcon(disp_image);
+        vidPanel.repaint();
+	}
+	
+	public static void DispContourOnImg(Mat img,List<MatOfPoint> contours,boolean dispCenterPoints, String title,Size sz)
+	{
+        Mat img1 = img.clone();
+        
+        if(dispCenterPoints)
+        {
+	        for (MatOfPoint contour : contours) 
+	        {
+	        	Point center = calcCenter(contour);
+	        	Imgproc.circle(img1, center, 10, new Scalar(255,0,0));
+	        }
+        }
+        
+        Imgproc.drawContours(img1, contours, -1, new Scalar(0,255,0),5);
+        DispImg(img1,title,sz);
 	}
 	 
 	//Converts the OpenCV matrix into format that can be displayed in java swing gui

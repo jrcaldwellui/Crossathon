@@ -3,17 +3,19 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.opencv.core.Size;
 
+import gen.CVDetect;
+import gen.Crossword;
 
 public class testCross {
 
 	public static void main(String[] args) {
-		String downClues = Reader1.main();
-		
 		
 		System.out.println( "Puzzle: ");
-		Crossword myCrossword = CVDetect.genCrossword("example_imgs/puzzleEZ.jpg");
-		System.out.println("");
+		Crossword myCrossword = CVDetect.genCrossword("example_imgs/1.jpg",3);
+		myCrossword.print();
+		/*System.out.println("");
 		ArrayList<String> cluesAcross = new ArrayList<String>();
 		cluesAcross.add(downClues.substring(76,90));
 		int wordLen = myCrossword.getWordLengthDown(9);
@@ -33,7 +35,7 @@ public class testCross {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 	}
