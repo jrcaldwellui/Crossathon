@@ -45,7 +45,7 @@ public class CVDetect {
 	        List<MatOfPoint> rect_contours = new ArrayList<MatOfPoint>();
 	        for (MatOfPoint contour : contours) 
 	        {
-	        	if( isContourQuadrilateral(contour) )
+	        	if( ImgTools.isContourQuadrilateral(contour) )
 	        	{
 	        		rect_contours.add(contour);
 	        	}
@@ -58,7 +58,7 @@ public class CVDetect {
 	            {
 	            	double area1 = Imgproc.contourArea(contour1);
 	            	double area2 = Imgproc.contourArea(contour2);
-	            	return (int)(Math.signum(area1 - area2) * Math.ceil(Math.abs(area1 - area2)));
+	            	return (int)Math.signum(area1 - area2);
 	            }
 	         });
 	        	       
@@ -82,13 +82,14 @@ public class CVDetect {
 	       /* DispImg(blurImg,"blur",new Size(1000,750));
 	        DispContourOnImg(img,contours,true,"original contours",new Size(1000,750));
 	        DispContourOnImg(img,rect_contours,true,"quad contours",new Size(1000,750));
-	        */DispContourOnImg(img,crossword_contours,true,"final contours",new Size(800,600));
+	        */
+	        ImgTools.DispContourOnImg(img,crossword_contours,true,"final contours",new Size(800,600));
 	       
 	        //Create list of data about crossword boxes
 	        ArrayList<Box> boxs = new ArrayList<Box>();
 	        for (MatOfPoint contour : crossword_contours)
 	        {
-	        	boxs.add(new Box(calcCenter(contour)));
+	        	boxs.add(new Box(ImgTools.calcContourCenter(contour)));
 	        }
 	        int numRows = calcRows(boxs);
 	        int numCols = calcCols(boxs);	
@@ -103,7 +104,7 @@ public class CVDetect {
 	/*
 	 * 
 	 */
-	public static int findSignificantXChange( ArrayList<Double> nums)
+	public static int findSignificantChange( ArrayList<Double> nums)
 	{
 		int sum = 0;
 		for(double num: nums)
@@ -123,29 +124,6 @@ public class CVDetect {
         return -1;
 	}
 
-
-	    
-	//based on http://www.pyimagesearch.com/2016/02/08/opencv-shape-detection/
-	/*
-	 * Simplifies contour into smaller number of vertices(on corners of shape)
-	 * if a contour has 4 vertices it is considered a quadrilateral. 
-	 * 
-	 * returns true if contour is classified as quadrilateral
-	 */
-	public static boolean isContourQuadrilateral (MatOfPoint contour){
-		MatOfPoint2f contour2f = new MatOfPoint2f(contour.toArray());
-		double arcLen = Imgproc.arcLength(contour2f, true);
-		MatOfPoint2f approx = new MatOfPoint2f();
-		Imgproc.approxPolyDP(contour2f,approx,0.04 * arcLen,true);
-		if(approx.rows() == 4)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
 	
 	public static int calcRows(ArrayList<Box> boxs)
 	{
@@ -153,26 +131,22 @@ public class CVDetect {
             @Override
             public int compare(Box box2, Box box1)
             {
-            	return -1 * (int)(Math.signum(box1.loc.x - box2.loc.x) * Math.ceil(Math.abs(box1.loc.x - box2.loc.x)));
+            	return (int) Math.signum(box2.loc.x - box1.loc.x);
             }
          });
         
-     
-       
         ArrayList<Double> diffs = new ArrayList<Double>();
-        for (int i = 1; i < boxs.size(); i++) 
+        for (int i = 0; i < boxs.size(); i++) 
         {
-        	boxs.get(i-1).diffx = boxs.get(i).loc.x - boxs.get(i-1).loc.x; 
-        	diffs.add(Math.abs( boxs.get(i).loc.x - boxs.get(i-1).loc.x) );
+        	Box currentBox = boxs.get(i);
+        	Box nextBox = boxs.get(i+1);		
+        			
+        	currentBox.diffx = Math.abs( nextBox.loc.x - currentBox.loc.x ); 
+        	diffs.add(currentBox.diffx);
         }
-        Collections.sort(diffs);
-        double sum = 0;
-		for( Double dif: diffs)
-		{
-			sum += dif;
-		} 
         
-        int colChange = findSignificantXChange(diffs);
+        Collections.sort(diffs);        
+        int colChange = findSignificantChange(diffs);
         
         double rowWidth = Math.abs( diffs.get(colChange) ) * 0.95;
         ArrayList<Integer> locationOf = new ArrayList<Integer>();
@@ -183,7 +157,6 @@ public class CVDetect {
         	box.col = row;
         	if(Math.abs(box.diffx) > rowWidth)
         	{
-        		
         		row++;
         	}
         }
@@ -198,7 +171,7 @@ public class CVDetect {
             @Override
             public int compare(Box box2, Box box1)
             {
-            	return  -1*(int)(Math.signum(box1.loc.y - box2.loc.y) * Math.ceil(Math.abs(box1.loc.y - box2.loc.y)));
+            	return  (int) Math.signum(box2.loc.y - box1.loc.y);
             }
          });
         for (int i = 1; i < boxs.size(); i++) 
@@ -207,7 +180,7 @@ public class CVDetect {
         	diffs.add( Math.abs( boxs.get(i).loc.y - boxs.get(i-1).loc.y ));
         }
         Collections.sort(diffs);
-        int rowChange = findSignificantXChange(diffs);
+        int rowChange = findSignificantChange(diffs);
         double colWidth = Math.abs( diffs.get(rowChange) ) * 0.95;
         int col = 0;
         for (Box box : boxs) 
@@ -220,88 +193,6 @@ public class CVDetect {
         }
         return col + 1;
 	}
-	    
-	public static Point calcCenter(MatOfPoint contour){
-		Moments m = Imgproc.moments(contour);
-		double x = m.get_m10() / m.get_m00();
-		double y = m.get_m01() / m.get_m00();
-		return new Point(x,y);
-		
-	}
-	
-	public static double Mean( Mat m)
-	{
-        double sum = 0;
-        for(int i = 0; i < m.height(); i++)
-        {
-        	for(int j = 0; j < m.width(); j++)
-        	{
-        		sum += m.get(i,j)[0];
-        	}
-        }
-        return sum / ( m.width() * m.height());
-	}
-	
-	//Displays OpenCV mat img on screen title is window label
-	public static void DispImg(Mat img,String title){
-        JFrame jframe = new JFrame(title);
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel vidPanel = new JLabel();
-        jframe.setContentPane(vidPanel);
-        jframe.setSize( img.cols(),img.rows());
-        jframe.setVisible(true);
-        ImageIcon disp_image = new ImageIcon(Mat2BufferedImage(img));
-        vidPanel.setIcon(disp_image);
-        vidPanel.repaint();
-	}	
-	
-	//Displays OpenCV mat img on screen title is window label
-	public static void DispImg(Mat img,String title,Size sz){
-        JFrame jframe = new JFrame(title);
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel vidPanel = new JLabel();
-        jframe.setContentPane(vidPanel);
-        Mat resizedImg = new Mat();
-        Imgproc.resize(img, resizedImg, sz);
-        jframe.setSize( resizedImg.cols(),resizedImg.rows());
-        jframe.setVisible(true);
-        ImageIcon disp_image = new ImageIcon(Mat2BufferedImage(resizedImg));
-        vidPanel.setIcon(disp_image);
-        vidPanel.repaint();
-	}
-	
-	public static void DispContourOnImg(Mat img,List<MatOfPoint> contours,boolean dispCenterPoints, String title,Size sz)
-	{
-        Mat img1 = img.clone();
-        
-        if(dispCenterPoints)
-        {
-	        for (MatOfPoint contour : contours) 
-	        {
-	        	Point center = calcCenter(contour);
-	        	Imgproc.circle(img1, center, 10, new Scalar(255,0,0));
-	        }
-        }
-        
-        Imgproc.drawContours(img1, contours, -1, new Scalar(0,255,0),5);
-        DispImg(img1,title,sz);
-	}
-	 
-	//Converts the OpenCV matrix into format that can be displayed in java swing gui
-	//source: https://stackoverflow.com/questions/17401852/open-video-file-with-opencv-java#19289392
-    public static BufferedImage Mat2BufferedImage(Mat m) {
-        //Method converts a Mat to a Buffered Image
-        int type = BufferedImage.TYPE_BYTE_GRAY;
-         if ( m.channels() > 1 ) {
-             type = BufferedImage.TYPE_3BYTE_BGR;
-         }
-         int bufferSize = m.channels()*m.cols()*m.rows();
-         byte [] b = new byte[bufferSize];
-         m.get(0,0,b); // get all the pixels
-         BufferedImage image = new BufferedImage(m.cols(),m.rows(), type);
-         final byte[] targetPixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
-         System.arraycopy(b, 0, targetPixels, 0, b.length);  
-         return image;
-        }
+
 	    
 }
